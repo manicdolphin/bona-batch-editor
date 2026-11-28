@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark"><title>Bona Batch Music Editor • V0.6.1 Assembly LAB · Revision D</title>
+<style>
+:root{--bg:#0d1220;--card:#172133;--card2:#111b2a;--line:#32425a;--fg:#f0f4fb;--sub:#aabacd;--mint:#84d9c1;--lav:#bcaafa;--yellow:#efd396;--red:#f1a2a7;--blue:#a9cefc}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 90% 0%,#273454,transparent 38%),var(--bg);color:var(--fg);font:15px/1.46 system-ui,-apple-system,'Segoe UI',sans-serif}
+main{max-width:1160px;padding:22px 17px 60px;margin:auto}header{display:flex;gap:13px;align-items:center;margin-bottom:8px}.logo{width:52px;height:52px;display:grid;place-items:center;font-size:27px;border-radius:15px;background:linear-gradient(135deg,#8b79cd,#439d9d)}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:850;color:var(--mint)}h1{font-size:clamp(26px,3.5vw,38px);line-height:1.08;margin:4px 0}h2{font-size:18px;margin:0 0 6px}h3{font-size:14px;margin:0}p{color:var(--sub);margin:6px 0 14px}.subtitle{font-size:14px;margin:10px 0 22px}.tag{display:inline-flex;gap:6px;align-items:center;border:1px solid #39576b;border-radius:999px;padding:5px 10px;background:#13333a;color:var(--mint);font-size:12px;font-weight:800}.panel{background:linear-gradient(160deg,#1a2538,#121b29);border:1px solid var(--line);padding:21px;border-radius:19px;margin:14px 0}.muted{color:var(--sub);font-size:13px}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:15px 0}.btn{border-radius:11px;min-height:43px;border:1px solid var(--line);color:var(--fg);background:#29374e;padding:10px 15px;cursor:pointer;font:inherit;font-weight:750;display:inline-flex;align-items:center;gap:8px;justify-content:center}.btn.primary{background:var(--lav);border-color:var(--lav);color:#181526}.btn.mint{background:#206452;border-color:#398b77}.btn:disabled{opacity:.42;cursor:not-allowed}.btn:hover:not(:disabled){filter:brightness(1.1)}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--lav);outline-offset:2px}.hide{display:none!important}.file-loader{display:none}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.field{min-width:0}label{display:block;font-size:12px;font-weight:800;color:#d5e2ef;margin-bottom:6px}input:not([type=checkbox]),select,textarea{width:100%;background:#0e1726;border:1px solid #425572;border-radius:9px;color:var(--fg);font:inherit;padding:10px 11px;min-height:42px}input::placeholder,textarea::placeholder{color:#7d8ba0}textarea{resize:vertical;min-height:65px}textarea:focus-visible{outline:2px solid var(--lav);outline-offset:2px}input[type=checkbox]{width:19px;height:19px;accent-color:var(--mint);cursor:pointer}select option{background:#182137;color:#fff}.inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.kpi{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:11px}.kpi b{font-size:22px;display:block}.kpi span{color:var(--sub);font-size:11px;letter-spacing:.3px}.bar{border-top:1px solid var(--line);margin:18px 0}.selectrow{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin:12px 0}.records{display:grid;gap:10px}.record{background:var(--card2);border:1px solid var(--line);border-radius:13px;padding:15px}.record.selected{border-color:#4e7a81}.record.warn{border-color:#8e604a}.recordhead{display:flex;align-items:start;gap:10px}.recordhead input{margin:3px 0 0}.recordname{min-width:0;flex:1}.recordname b{display:block;overflow-wrap:anywhere;font-size:14px}.recordname small{display:block;color:var(--sub);overflow-wrap:anywhere;margin-top:4px}.recordname .warning{color:var(--yellow)}.pill{font-size:11px;border:1px solid #4c5d79;border-radius:99px;padding:4px 8px;color:var(--blue);white-space:nowrap}.record details{margin-top:12px}.record summary{cursor:pointer;font-weight:750;color:var(--lav);padding:6px 0;user-select:none}.recordfields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:9px}.preview{margin-top:10px;border:1px solid #315c58;border-radius:10px;background:#10252b;padding:9px 11px;color:#b8efdf;overflow-wrap:anywhere}.preview small{color:var(--sub);display:block;margin-bottom:3px}.notice{background:#143635;border:1px solid #337666;border-radius:12px;padding:11px 14px;color:#d5f3ed;font-size:13px;margin-top:15px}.notice.warn{background:#39301b;border-color:#735c31;color:#ffe3ab}.notice.error{background:#3b2731;border-color:#9a5663;color:#ffd4dd}.status{margin-top:10px;color:var(--sub);font-size:13px;white-space:pre-line}.hint{font-size:12px;color:var(--sub)}code{background:#0d1928;padding:2px 5px;border-radius:4px;color:var(--mint)}.footer{font-size:12px;color:var(--sub);text-align:center;padding:12px 0}.saveRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.saveRow .btn{flex:0 0 auto}.actions-inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn.small{min-height:34px;padding:6px 10px;font-size:12px}.import-note{color:var(--mint);font-size:12px;margin-top:6px}.mini-rail{margin-top:9px;display:flex;gap:8px;flex-wrap:wrap}.artwork-layout{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:18px;align-items:start}.cover-picture{width:100%;aspect-ratio:1/1;object-fit:contain;background:#0b1422;border:1px solid var(--line);border-radius:12px}.cover-empty{width:100%;aspect-ratio:1/1;display:grid;place-items:center;background:#10192b;border:1px dashed #536580;border-radius:12px;color:var(--sub);font-size:13px;text-align:center;padding:12px}.choice-status{color:var(--mint);font-weight:750}.artwork-hint{margin-top:8px;font-size:12px;color:var(--sub)}@media(max-width:550px){.artwork-layout{grid-template-columns:1fr 120px;gap:10px}}@media(max-width:360px){.artwork-layout{grid-template-columns:1fr}.cover-picture,.cover-empty{max-width:180px}}
+@media(max-width:780px){main{padding:15px 11px 35px}.panel{padding:16px}.grid,.grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}.recordfields{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:450px){.grid,.grid.three,.recordfields{grid-template-columns:1fr}.toolbar .btn{flex:1 1 120px}.logo{width:45px;height:45px}header{gap:9px}.panel{padding:13px}.pill{display:none}}
+
+#rescueStatus,#durationStatus{white-space:pre-line}
+.project-missing{color:var(--yellow);font-weight:700}
+.btn:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+.extras{margin-top:9px;border-top:1px solid var(--line);padding-top:11px}.extras summary{cursor:pointer;color:var(--lav);font-size:13px;font-weight:750;user-select:none;list-style:none}.extras summary::-webkit-details-marker{display:none}.extras[open] summary{margin-bottom:10px}.hint.inlineWarning{color:var(--yellow)}
+/* V0.6.1 LAB: touch-first album arrangement and deliberately previewed numbering. */
+.order-controls{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.btn.order-btn{min-height:36px;min-width:35px;padding:5px 8px;font-size:17px}
+.btn.drag-handle{min-height:36px;min-width:37px;padding:5px 8px;font-size:17px;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.btn.drag-handle:active{cursor:grabbing}
+.record.drop-target{outline:2px dashed var(--mint);outline-offset:3px;background:#1a3442}
+.record.drag-source{opacity:.65}
+.auto-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:13px 0}
+.auto-table-wrap{max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin-top:10px}
+.auto-table{border-collapse:collapse;width:100%;font-size:13px}
+.auto-table th,.auto-table td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.auto-table th{position:sticky;top:0;background:#27344a;color:var(--mint)}
+.auto-table td:last-child{color:var(--mint);font-weight:700}
+@media(max-width:780px){.auto-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.recordhead{flex-wrap:wrap}.order-controls{width:100%;justify-content:flex-end}}
+@media(max-width:450px){.auto-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+<!-- Bona brand assets: only branding links have been added -->
+<link rel="icon" type="image/x-icon" href="./Icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="./Icons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./Icons/apple-touch-icon.png">
+<link rel="manifest" href="./manifest.webmanifest">
+</head>
+<body><main>
+<header><div class="logo" aria-hidden="true">♫</div><div><div class="eyebrow">Really Useful App Department</div><h1>Bona Batch Music Editor</h1></div></header>
+<p class="subtitle"><span class="tag">V0.6.1 LAB · ALBUM ASSEMBLY · REV D</span> &nbsp;A safer album workshop: project recovery, duration scanning and artwork. Your music files stay on your device, and originals are never modified.</p>
+<div class="notice warn"><b>Separate test page, not a replacement for V0.6.</b> This laboratory has its own browser autosave and saved-protocol storage. Save a Bona Project JSON before extensive tests. Exported audio is still copy-only.</div>
+<section class="panel" aria-labelledby="rescueHeading">
+<h2 id="rescueHeading">0. Project rescue 🛟</h2>
+<p><b>Protect your work before you switch tabs.</b> Download a small project backup of your editing decisions. It does not contain any music. If Chrome loses this page, reopen the app, restore the project and select the original audio folder again.</p>
+<div class="toolbar"><button id="saveProjectBtn" class="btn mint" type="button">↓ Save project backup</button><button id="openProjectBtn" class="btn" type="button">↥ Restore project file</button><button id="restoreAutosaveBtn" class="btn" type="button" disabled>↶ Recover browser autosave</button><button id="forgetAutosaveBtn" class="btn small" type="button">Forget browser autosave</button></div>
+<input id="projectInput" class="file-loader" type="file" accept=".json,application/json">
+<div class="status" id="rescueStatus" role="status">Project backup works even when browser autosave does not. Audio files are never included in backups.</div>
+<div class="hint">Browser autosave is best-effort, especially with Android's local <code>content://</code> tabs. A downloaded project file is the dependable backup. Re-select your MP3s before exporting restored work. Artwork must also be reselected and approved.</div>
+</section>
+<section class="panel" aria-labelledby="loadHeading">
+<h2 id="loadHeading">1. Bring in the music</h2><p>Choose a folder, select several audio files, or try the sample album. Files are read locally in your browser, not uploaded anywhere.</p>
+<div class="toolbar"><button id="folderBtn" class="btn primary" type="button">📁 Choose album folder</button><button id="filesBtn" class="btn" type="button">♫ Choose audio files</button><button id="demoBtn" class="btn" type="button">◎ Try sample album</button><button id="emptyBtn" class="btn" type="button">Clear workspace</button></div>
+<input id="folderInput" class="file-loader" type="file" webkitdirectory multiple><input id="filesInput" class="file-loader" type="file" accept=".mp3,.m4a,.aac,.flac,.ogg,.wav,.aiff,.wma,audio/*" multiple><input id="coverFileInput" class="file-loader" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" multiple>
+<p class="hint">Folder selection depends on browser permissions; on Android, use “Choose audio files” if folder selection is unavailable. MP3 ID3 tags are read and can now be rewritten in exported copies. Other audio formats can be renamed, but their embedded tags are left unchanged. JPEG/PNG images in selected folders are detected as optional cover candidates and are not counted as tracks. A 01-03 filename is recognised as Disc 01, Track 03. V0.5.4 adds reviewable suggestions for track numbers mistakenly embedded in song titles. All V0.5.3 features remain. By default, likely mix/version descriptions in trailing brackets are separated on import (reversible in the workshop).</p>
+<div class="actions-inline" style="margin:12px 0 5px"><label class="inline" style="margin:0"><input type="checkbox" id="autoExtract" checked> Extract likely mix/version suffixes from titles when importing</label></div>
+<p class="hint">Examples: <code>Hello (Fresh New Mix)</code> → title <code>Hello</code>, version <code>Fresh New Mix</code>. Titles such as <code>Sweet Dreams (Are Made of This)</code> are left alone. You can restore an extracted title at any time.</p>
+<div class="kpis"><div class="kpi"><b id="kFiles">0</b><span>TRACKS LOADED</span></div><div class="kpi"><b id="kSelected">0</b><span>SELECTED</span></div><div class="kpi"><b id="kTagged">0</b><span>MP3 TAGS FOUND</span></div><div class="kpi"><b id="kConflicts">0</b><span>NAME WARNINGS</span></div></div>
+<div id="loadStatus" role="status" class="status">The empty cutting room awaits its first record.</div>
+<details id="numberDiagnostics" class="extras hide" style="margin-top:12px">
+<summary id="numberDiagnosticsSummary">Metadata numbering diagnostics</summary>
+<p class="hint">Invalid imported track/disc numbers were left blank, not guessed. The original values are listed here and kept in project backups. With ID3 writing on, they are also preserved in separate Bona Original Number custom tags in exported MP3 copies. This does not block export; the standard catalogue remains unchanged.</p>
+<div class="auto-table-wrap"><table class="auto-table"><thead><tr><th>Source file</th><th>Field</th><th>Rejected original value</th></tr></thead><tbody id="numberDiagnosticsRows"></tbody></table></div>
+<div class="toolbar"><button id="numberDiagnosticsCSV" type="button" class="btn small">↓ Export numbering diagnostics CSV</button></div></details>
+</section>
+<section class="panel" aria-labelledby="bulkHeading">
+<h2 id="bulkHeading">2. Album-wide details</h2><p>Enter information once, then apply it to all selected tracks. Blank boxes leave existing values alone. Album artist is separate from the artist credited on each track.</p>
+<div class="grid"><div class="field"><label for="bulkArtist">Track artist</label><input id="bulkArtist" placeholder="e.g. Paul McCartney"></div><div class="field"><label for="bulkAlbumArtist">Album artist</label><input id="bulkAlbumArtist" placeholder="e.g. Various Artists"></div><div class="field"><label for="bulkAlbum">Album</label><input id="bulkAlbum" placeholder="e.g. Give My Regards…"></div><div class="field"><label for="bulkYear">Year</label><input id="bulkYear" maxlength="4" inputmode="numeric" placeholder="1984"></div><div class="field"><label for="bulkDisc">Disc number</label><input id="bulkDisc" type="number" min="1" step="1" placeholder="1"></div></div>
+<div class="toolbar"><button id="bulkBtn" class="btn mint" type="button">Apply to selected tracks</button><button id="seqBtn" class="btn" type="button">Quick number selected tracks 01, 02, 03…</button></div>
+<details class="extras" id="autoNumberPanel"><summary>▸ AutoNumber studio · preview, disc handling &amp; undo (V0.6.1 LAB)</summary>
+<p class="hint">Arrange tracks first using the ↑ ↓ controls or drag handle in Section 4. Only <b>selected tracks</b> are numbered. Preview before applying. Number changes affect the workspace and exported copies, never original audio.</p>
+<div class="auto-grid">
+<div class="field"><label for="autoStart">First track number</label><input id="autoStart" type="number" min="1" max="9999" step="1" value="1" inputmode="numeric"></div>
+<div class="field"><label for="autoStep">Count by</label><input id="autoStep" type="number" min="1" max="100" step="1" value="1" inputmode="numeric"></div>
+<div class="field"><label for="autoDisc">Assign disc number</label><input id="autoDisc" type="number" min="1" max="999" step="1" value="1" inputmode="numeric"></div>
+<div class="field"><label for="autoMode">Disc handling</label><select id="autoMode"><option value="assign">Set all selected tracks to disc above</option><option value="preserve">Keep each disc, restart numbers when disc changes</option></select></div>
+</div>
+<div class="toolbar"><button id="autoPreviewBtn" class="btn mint" type="button" disabled>🔎 Preview AutoNumber</button><button id="autoApplyBtn" class="btn primary" type="button" disabled>✓ Apply previewed numbers</button><button id="autoUndoBtn" class="btn" type="button" disabled>↶ Undo last numbering / move</button></div>
+<div class="hint">For multi-disc albums, you can either number each disc separately using selection, or choose “Keep each disc” to restart the sequence when the disc number changes in the displayed order. Existing metadata isn't overwritten until you approve the preview.</div>
+<div id="autoPreview" aria-live="polite"></div><div id="autoStatus" class="status" role="status">No numbering preview yet. The quick-number button above remains available as before.</div>
+</details>
+<details class="extras" id="albumHelpers"><summary>▸ Quick album helpers</summary>
+ <div class="mini-rail"><button id="matchArtistsBtn" class="btn small" type="button" disabled>↪ Match album artists to track artists</button><button id="clearAlbumBtn" class="btn small" type="button" disabled>⌫ Clear selected album tags…</button><button id="commonTagsBtn" class="btn small" type="button" disabled>◎ Find common MP3 tags</button><button id="clearBulkBoxesBtn" class="btn small" type="button" title="Empty the five album-wide input boxes only; leave loaded track details unchanged">⌫ Empty entry boxes</button></div>
+ <p class="hint">The tag detective fills only empty album-wide boxes. Use “Empty entry boxes” to clear the five boxes before another scan. This never deletes loaded track tags or your Notes / Comments.</p>
+ <div class="field" style="margin-top:14px"><label for="bulkNotes">Album-wide Notes / Comments</label><textarea id="bulkNotes" rows="2" maxlength="4000" placeholder="Write a shared comment here; leave blank to keep existing comments."></textarea></div>
+ <div class="mini-rail"><button id="applyNotesBtn" class="btn small" type="button" disabled>✓ Apply comments to selected tracks</button><button id="clearNotesBtn" class="btn small" type="button" disabled>⌫ Clear comments from selected tracks…</button></div>
+ <p class="hint">Apply replaces existing MP3 comments on exported copies. Clear removes all MP3 ID3 comment fields, including legacy comments. Tick “Save edited ID3 tags” before exporting. Other formats remain rename-only. The source files never change.</p>
+ <label class="inline" style="margin:10px 0 0"><input id="smartCaps" type="checkbox" checked> Capitalise words as I type (names and titles only)</label>
+ <p class="hint">Capitalisation affects new typing, not imported tags or notes. Turn it off for deliberate lower-case styling. Clearing album tags keeps track titles, artists, disc/track numbers, durations and artwork.</p>
+ <div class="status hide" id="commonStatus" role="status"></div>
+</details>
+</section>
+<section class="panel" aria-labelledby="presetHeading">
+<h2 id="presetHeading">3. Filename protocols</h2><p>Use a standard layout or save your own named pattern. Presets are stored in this browser, separate from the live catalogue.</p>
+<div class="grid three"><div class="field"><label for="preset">Saved protocol</label><select id="preset"></select></div><div class="field"><label for="pattern">Pattern</label><input id="pattern" spellcheck="false" value="{artist} – {title} ({version}) [{year}]" aria-describedby="tokenHelp"></div><div class="field"><label for="presetName">Name this pattern</label><input id="presetName" placeholder="My 12-inch protocol"></div></div>
+<p class="hint" id="tokenHelp">Use <code>{artist}</code> <code>{title}</code> <code>{version}</code> <code>{album}</code> <code>{year}</code> <code>{track}</code> <code>{disc}</code> <code>{albumartist}</code>. The extension stays original; missing optional fields disappear.</p>
+<div class="toolbar"><button id="savePreset" class="btn" type="button">＋ Save named protocol</button><button id="deletePreset" class="btn" type="button">Remove selected custom preset</button></div>
+</section>
+<section class="panel" aria-labelledby="trackHeading">
+<div class="selectrow"><div><h2 id="trackHeading">4. Track workshop</h2><p class="muted">Arrange your tracks with ↑ ↓ or the ↕ drag handle, then edit their details. Order is saved in project backups.</p></div><div class="actions-inline"><button id="expandAll" class="btn small" type="button" disabled>▾ Expand all</button><button id="collapseAll" class="btn small" type="button" disabled>▴ Collapse all</button><label class="inline" style="margin:0"><input id="selectAll" type="checkbox" checked> Select all</label></div></div>
+<div class="mini-rail" style="margin-bottom:8px"><button id="extractLikely" class="btn small" type="button" disabled>✦ Extract likely versions</button></div>
+<details class="extras" id="advancedMixTools"><summary>▸ More mix tools</summary><div class="mini-rail"><button id="extractAllSuffixes" class="btn small" type="button" disabled>Extract all trailing brackets…</button><button id="suggestPlainVersions" class="btn small" type="button" disabled>Find mixes without brackets</button></div><p class="hint">Unbracketed mixes are suggestions only. Accept or dismiss each one in the track card. Some named remixes may need manual adjustment.</p></details>
+<details class="extras" id="numberTitleTools"><summary>▸ Numbered-title checks</summary><div class="mini-rail"><button id="inspectTitleNumbers" class="btn small" type="button" disabled>🔎 Find track numbers in titles</button></div><p class="hint">Checks selected tracks for numbering accidentally included in their <b>Title</b> tag. Suggestions appear below each affected track: nothing is removed unless you approve it. Numbers that belong to the song, such as <i>99 Red Balloons</i>, <i>17 Days</i> and <i>101</i>, are left alone by default.</p></details>
+<p class="hint">Likely bracketed versions can be separated automatically. Other titles stay intact until you choose to change them. Original files are never modified.</p>
+<div id="records" class="records"><p>No tracks loaded yet.</p></div>
+</section>
+<section class="panel" aria-labelledby="durationHeading">
+<h2 id="durationHeading">5. Duration detective ⏱️</h2>
+<p>Measure how long each <b>selected audio track</b> lasts, without playing it through. This scans the audio files, not just their ID3 tags. Manually entered durations remain untouched unless you explicitly choose otherwise.</p>
+<div class="toolbar"><button id="scanDurationBtn" type="button" class="btn mint" disabled>⏱ Scan missing durations</button><label class="inline"><input type="checkbox" id="rescanDurations"> Replace existing durations (review carefully)</label></div>
+<div class="status" id="durationStatus" role="status">No scan performed. Tested formats include MP3 CBR, MP3 VBR, FLAC, M4A and AAC; unrecognised files are reported instead of guessed.</div>
+<p class="hint">Results show the reading method where possible. Some browsers cannot decode every codec, so a file may need manual timing. Durations are rounded to the nearest second in MM:SS. Originals remain untouched.</p>
+</section>
+<section class="panel" aria-labelledby="coverHeading">
+<h2 id="coverHeading">6. Album cover studio</h2>
+<p>Folder artwork is detected automatically. Choose a cover for the <b>selected MP3 tracks</b>, or leave their existing artwork exactly as it is. Originals are always untouched.</p>
+<div class="artwork-layout">
+<div>
+ <div class="field"><label for="coverSelect">Images found or added</label><select id="coverSelect" disabled><option>No artwork loaded</option></select></div>
+ <div id="coverFileStatus" class="artwork-hint" role="status">No image files detected. You can choose a JPEG or PNG separately.</div>
+ <div class="toolbar"><button id="coverPickBtn" class="btn" type="button">＋ Choose cover image</button><button id="coverUseBtn" class="btn mint" type="button" disabled>✓ Use selected cover</button><button id="coverKeepBtn" class="btn" type="button">↩ Keep existing artwork</button></div>
+ <label class="inline" style="margin:8px 0 4px"><input id="coverOptimise" type="checkbox" checked> Optimise cover for MP3 tags</label>
+ <div class="hint">Convert a copy to JPEG, maximum 1000 pixels on its longest edge, aiming for 350 KB or less. Uncheck to embed the original JPEG/PNG bytes. Transparent PNG areas become white when optimised.</div>
+ <p class="artwork-hint" id="coverModeStatus" role="status"><b>Keep existing artwork.</b> Nothing will be embedded or replaced unless you explicitly select a new cover.</p>
+</div>
+<div><img id="coverPreview" class="cover-picture hide" alt="Selected album cover preview"><div id="coverPlaceholder" class="cover-empty">♫<span>Artwork preview</span></div><div id="coverDimensions" class="artwork-hint"></div></div>
+</div>
+<div class="notice">When you choose a cover, V0.5 replaces the <b>front-cover image</b> in selected MP3 copies, while preserving other supported picture types. Other audio formats remain rename-only. The image is not added as a separate track or ZIP entry. Unusual MP3 tags stop the export safely.</div>
+</section>
+<section class="panel" aria-labelledby="outputHeading">
+<h2 id="outputHeading">7. Safe output</h2><p>Export renamed <b>copies</b> using the proven ZIP method, or try direct folder export in the optional panel below. Original files are never overwritten.</p>
+<div class="grid three" style="margin:12px 0 14px">
+<div class="field"><label for="zipName">ZIP filename (editable)</label><input id="zipName" aria-describedby="zipHint" placeholder="Artist - Album (Year).zip"><div class="hint" id="zipHint">Suggested from selected tracks. You can change it.</div></div>
+<div class="field"><label class="inline" for="writeTags" style="margin-top:10px"><input id="writeTags" type="checkbox" checked> Save edited ID3 tags inside MP3 copies</label><div class="hint">Other file types: rename only. Unusual MP3 tags: export stops safely.</div></div>
+<div class="field"><label class="inline" for="mixInTitle" style="margin-top:10px"><input id="mixInTitle" type="checkbox" checked> Include mix/version in MP3 title tag</label><div class="hint">Also retains the mix separately in a Bona Version tag.</div></div>
+</div>
+<div class="grid three" style="margin:8px 0 12px">
+<div class="field"><label for="zipLimit">Maximum size of each ZIP</label><select id="zipLimit"><option value="220">220 MB • recommended for phones</option><option value="350">350 MB • larger batch</option><option value="600">600 MB • desktop preferred</option><option value="0">No app size cap • advanced / risky</option></select><div class="hint">A larger collection is split into numbered ZIP parts. One tap downloads each part. No-cap mode may exhaust browser memory; the ZIP32 format still has a 4 GiB ceiling.</div></div>
+</div>
+<div class="toolbar"><button id="suggestZipBtn" class="btn" type="button">↺ Suggested ZIP name</button></div>
+<div class="toolbar"><button id="zipBtn" class="btn primary" type="button" disabled>↓ Download renamed copies (ZIP)</button><button id="csvBtn" class="btn" type="button" disabled>↓ Export catalogue CSV</button></div>
+<details class="extras" id="folderExportPanel" style="margin-top:14px">
+<summary>📁 Direct folder export · V0.6</summary>
+<p class="hint">Choose a destination. Bona creates a <b>new, uniquely named subfolder</b> and writes finished copies directly into it, one track at a time. It never writes into the source folder itself or replaces an existing file. ZIP export above remains unchanged.</p>
+<div class="toolbar"><button id="folderExportBtn" class="btn mint" type="button" disabled>📂 Choose destination &amp; export copies</button><button id="folderStopBtn" class="btn small" type="button" disabled>■ Stop after current track</button></div>
+<div id="folderStatus" class="status" role="status" aria-live="polite">Checking whether this browser supports selecting and writing to folders…</div>
+<div class="hint">Requires a compatible browser, normally Chrome 132+ over HTTPS. On Android, select a writable destination such as Downloads or Music, then approve its permission request. If denied or unavailable, use ZIP export instead. Originals stay untouched.</div>
+</details>
+<div class="notice"><b>V0.6:</b> The ZIP contains renamed copies. For standard MP3s, ticked ID3 writing also updates track artist, album artist, title, album, year, track, disc, duration, plus Bona mix and notes. Existing artwork is retained unless you explicitly approve a new cover in section 6; selected JPEG/PNG artwork can then replace front-cover images in exported MP3 copies. Non-MP3 formats are renamed only. <b>Review the exported files before replacing originals.</b> Album Artist is saved as the standard MP3 TPE2 tag; the catalogue CSV retains the current 16-column format and does not yet include Album Artist. Direct Google Sheets import is not yet included. Large collections can now be exported in numbered ZIP parts, without discarding any selected tracks.</div>
+<div id="outStatus" class="status" role="status">No files exported.</div>
+</section>
+<div class="footer">Bona Engineering • V0.6.1 separate assembly laboratory · Rev D • No connection to V1.4.1 • Original music remains where it is</div>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const qs=(s)=>document.querySelector(s);
+const supported=/\.(mp3|m4a|aac|flac|ogg|wav|aiff|aif|wma)$/i;
+const cols=['Entry ID','Date added','Artist','Track title','Version / mix','Year','Collection','Format','Album / source','Duration','Notes','Generated filename','Filename style','Track number','Disc number','Custom pattern'];
+const standards=[{name:'Standalone remix',pattern:'{artist} – {title} ({version}) [{year}]'},{name:'Album track',pattern:'{track} – {artist} – {title}'},{name:'Disc and track',pattern:'{disc}-{track} – {artist} – {title}'},{name:'Artist, album, track',pattern:'{artist} – {album} – {track} – {title}'},{name:'Plain title',pattern:'{artist} – {title}'}];
+let items=[],seq=0,presets=[];
+let zipNameCustomized=false;
+// LAB-only in-memory undo history. No music bytes or source files are stored here.
+const assemblyUndoStack=[];
+let autoPlan=null,dragState=null;
+let artworks=[],artSeq=0,chosenCoverId=null,coverApply=false;
+const imagePattern=/\.(jpe?g|png)$/i;
+const imageMime={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png'};
+const presetKey='bona_batch_music_presets_v061_assembly_lab';
+const recoveryKey='bona_batch_v061_assembly_lab_session_backup_v1';
+let recoveryTimer=null,allowAutosave=false,scanBusy=false,autosaveAvailable=false;
+const encoder=new TextEncoder();
+function msg(where,text,kind=''){const el=$(where);el.textContent=text;el.className=kind?'notice '+kind:'status'}
+function fmt(n){return n===null||n===undefined||n===''?'':String(n).trim()}
+// Empty or all-zero disc/track metadata means 'unassigned', not a mandatory number.
+function optionalNumber(n){const v=fmt(n);return /^0+$/.test(v)?'':v}
+// Rev D: validate the entire imported frame before extracting a number from n/total.
+// Keep invalid text outside the numeric field; never infer a number from a catalogue string.
+function importedNumber(n){
+ const raw=fmt(n);if(!raw||/^0+$/.test(raw))return {value:'',rejected:''};
+ const m=/^(\d{1,4})(?:\s*\/\s*(\d{1,4}))?$/.exec(raw);
+ if(m&&Number(m[1])===0&&(!m[2]||Number(m[2])>0))return {value:'',rejected:''};
+ if(m&&Number(m[1])>0&&(!m[2]||Number(m[2])>=Number(m[1])))return {value:m[1],rejected:''};
+ return {value:'',rejected:raw};
+}
+function cleanImportedNumbers(x){
+ for(const key of ['track','disc']){const field=key+'Rejected';if(!(key in x)&&!(field in x))continue;const result=importedNumber(x[key]);
+  if(result.rejected)x[field]=result.rejected;else x[field]=typeof x[field]==='string'?x[field]:'';
+  x[key]=result.value;
+ }
+ return x;
+}
+function numberDiagnosticRows(){return items.flatMap(x=>['track','disc'].filter(k=>fmt(x[k+'Rejected'])).map(k=>[x.original,k==='track'?'Track number':'Disc number',x[k+'Rejected']]));}
+function renderNumberDiagnostics(){
+ const rows=numberDiagnosticRows(),panel=$('numberDiagnostics'),body=$('numberDiagnosticsRows');
+ panel.classList.toggle('hide',!rows.length);$('numberDiagnosticsSummary').textContent=`⚠ ${rows.length} invalid imported number field(s) cleared across ${items.filter(x=>x.trackRejected||x.discRejected).length} track(s) · inspect details`;
+ body.replaceChildren();for(const row of rows){const tr=document.createElement('tr');for(const v of row){const td=document.createElement('td');td.textContent=v;tr.append(td)}body.append(tr)}
+}
+function exportNumberDiagnostics(){const rows=numberDiagnosticRows();if(!rows.length)return;
+ // Protect spreadsheet users from formulas in untrusted imported metadata.
+ const safe=v=>csvEscape(/^[=+@\-\t\r\n]/.test(String(v))?"'"+v:v);
+ download(new Blob(['\ufeff'+[['Source file','Field','Rejected original value'],...rows].map(row=>row.map(safe).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}),'Bona_Numbering_Diagnostics.csv');
+}
+function cleanName(s){return String(s||'').replace(/[\\/:*?"<>|\u0000-\u001f]/g,' ').replace(/\s+/g,' ').trim().replace(/[. ]+$/g,'').slice(0,220)}
+function short(s){return String(s||'').length>95?String(s).slice(0,92)+'…':String(s||'')}
+function prettyBytes(n){return n<1024*1024?Math.round(n/1024)+' KB':(n/1024/1024).toFixed(1)+' MB'}
+function coverRank(f){const n=f.name.toLowerCase();const names=['folder.jpg','folder.jpeg','folder.png','cover.jpg','cover.jpeg','cover.png','front.jpg','front.jpeg','front.png','albumart.jpg','albumart.jpeg','albumart.png'];const i=names.indexOf(n);return i>=0?i:100}
+function activeArtwork(){return artworks.find(x=>x.id===chosenCoverId)||null}
+function revokeArtworks(){for(const art of artworks)URL.revokeObjectURL(art.url);artworks=[];chosenCoverId=null;coverApply=false}
+function receiveArtwork(list){
+ const images=[...list].filter(f=>imagePattern.test(f.name));if(!images.length)return 0;
+ const existing=new Set(artworks.map(x=>x.path+'|'+x.file.size+'|'+x.file.lastModified));let n=0;
+ for(const file of images){const path=file.webkitRelativePath||file.name,key=path+'|'+file.size+'|'+file.lastModified;if(existing.has(key))continue;
+  const art={id:++artSeq,file,path,url:URL.createObjectURL(file)};artworks.push(art);existing.add(key);n++}
+ artworks.sort((a,b)=>coverRank(a.file)-coverRank(b.file)||a.path.localeCompare(b.path,undefined,{numeric:true}));
+ if(!activeArtwork()&&artworks.length)chosenCoverId=artworks[0].id;
+ if(n>0)coverApply=false;renderCover();return n;
+}
+function renderCover(){
+ const sel=$('coverSelect'),selected=activeArtwork();sel.replaceChildren();
+ if(!artworks.length){const op=document.createElement('option');op.textContent='No images found';sel.append(op)}
+ else for(const a of artworks){const op=document.createElement('option');op.value=String(a.id);op.textContent=a.path+' • '+prettyBytes(a.file.size);sel.append(op)}
+ sel.disabled=!artworks.length;if(selected)sel.value=String(selected.id);
+ $('coverUseBtn').disabled=!selected;
+ $('coverFileStatus').textContent=artworks.length?artworks.length+' image candidate'+(artworks.length===1?'':'s')+' found. Suggested: '+artworks[0].file.name+'. Review before using.':'No image files detected. You can choose a JPEG or PNG separately.';
+ const image=$('coverPreview'),place=$('coverPlaceholder');
+ if(selected){image.src=selected.url;image.alt='Preview of '+selected.file.name;image.classList.remove('hide');place.classList.add('hide');$('coverDimensions').textContent=selected.file.name+' • '+prettyBytes(selected.file.size)}
+ else{image.removeAttribute('src');image.classList.add('hide');place.classList.remove('hide');$('coverDimensions').textContent=''}
+ $('coverModeStatus').textContent=coverApply&&selected?'✓ Approved: '+selected.file.name+' will become the front cover of selected MP3 copies when ID3 writing is enabled.':'Keep existing artwork. No new cover will be embedded until you click “Use selected cover”.';
+ $('coverModeStatus').classList.toggle('choice-status',coverApply&&!!selected);
+}
+function chooseArtwork(){const id=Number($('coverSelect').value);if(chosenCoverId!==id){chosenCoverId=id;coverApply=false}renderCover();queueAutosave()}
+function applyArtwork(){if(!activeArtwork())return;resetZipProgress();coverApply=true;renderCover();queueAutosave();msg('outStatus','Cover selected for MP3 copies. Original files and existing tags remain unchanged until you export and verify the new ZIP.')}
+function keepArtwork(){resetZipProgress();coverApply=false;renderCover();queueAutosave();msg('outStatus','Existing embedded artwork will be kept. No new cover selected.');}
+function imageToCanvas(file){return new Promise((resolve,reject)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{URL.revokeObjectURL(u);resolve(im)};im.onerror=()=>{URL.revokeObjectURL(u);reject(Error('This image could not be decoded. Choose a valid JPEG or PNG.'))};im.src=u})}
+function canvasBlob(canvas,quality){return new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('Unable to optimise this cover image.')), 'image/jpeg',quality))}
+async function prepareCover(){
+ const a=activeArtwork();if(!coverApply||!a)return null;
+ const file=a.file;if(file.size>20*1024*1024)throw Error('Cover image exceeds 20 MB; please choose a smaller image.');
+ const src=new Uint8Array(await file.slice(0,12).arrayBuffer()),isJPEG=src[0]===255&&src[1]===216&&src[2]===255,isPNG=src.length>=8&&[137,80,78,71,13,10,26,10].every((v,i)=>src[i]===v);
+ if(!isJPEG&&!isPNG)throw Error('Cover image is not a valid JPEG or PNG.');
+ if(!$('coverOptimise').checked)return {bytes:new Uint8Array(await file.arrayBuffer()),mime:isPNG?'image/png':'image/jpeg',description:'Original image'};
+ const img=await imageToCanvas(file),width=img.naturalWidth,height=img.naturalHeight;if(!width||!height||width*height>40e6)throw Error('Cover has unusually large dimensions; please resize it first.');
+ const scale=Math.min(1,1000/Math.max(width,height)),w=Math.max(1,Math.round(width*scale)),h=Math.max(1,Math.round(height*scale));
+ const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');if(!ctx)throw Error('Canvas is unavailable for cover optimisation.');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);
+ let blob;for(const q of [.86,.79,.72,.64]){blob=await canvasBlob(canvas,q);if(blob.size<=350*1024)break}
+ return {bytes:new Uint8Array(await blob.arrayBuffer()),mime:'image/jpeg',description:w+'×'+h+' JPEG ('+prettyBytes(blob.size)+')'};
+}
+function apicPictureType(payload){if(payload.length<5)return null;const end=payload.indexOf(0,1);if(end<0||end+1>=payload.length)return null;return payload[end+1]}
+function makeCoverFrame(cover,ver){const payload=joinArrays([new Uint8Array([0]),encoder.encode(cover.mime),new Uint8Array([0,3,0]),cover.bytes]);return id3Frame('APIC',payload,ver)}
+function patternText(item,raw){
+ const track=optionalNumber(item.track),disc=optionalNumber(item.disc);
+ const val={artist:item.artist,albumartist:item.albumArtist,title:item.title,version:item.version,album:item.album,year:item.year,track:track?track.padStart(2,'0'):'',disc:disc?disc.padStart(2,'0'):''};
+ let pattern=raw||'{artist} – {title}';
+ pattern=pattern.replace(/\([^()]*\{([a-z]+)\}[^()]*\)/gi,(all,key)=>fmt(val[key])?all:'');
+ pattern=pattern.replace(/\[[^\[\]]*\{([a-z]+)\}[^\[\]]*\]/gi,(all,key)=>fmt(val[key])?all:'');
+ let result=pattern.replace(/\{([a-z]+)\}/gi,(_,k)=>fmt(val[k.toLowerCase()]));
+ result=result.replace(/\s*[–-]\s*(?=[–-]|$)/g,' ').replace(/\s*\(\s*\)/g,'').replace(/\s*\[\s*\]/g,'').replace(/\s+/g,' ').replace(/^[-–\s]+|[-–\s]+$/g,'');
+ return cleanName(result||item.sourceBase||'untitled');
+}
+function displayName(item){return patternText(item,$('pattern').value)+(item.ext||'.mp3')}
+function zipSuggestion(){
+ const chosen=items.filter(x=>x.selected);if(!chosen.length)return 'Bona_Music_Batch.zip';
+ const unique=key=>[...new Set(chosen.map(x=>fmt(x[key]).toLocaleLowerCase()))];
+ const albums=unique('album'),artists=unique('artist'),years=unique('year');
+ const album=fmt(chosen[0].album),artist=fmt(chosen[0].artist),year=fmt(chosen[0].year),albumArtist=fmt(chosen[0].albumArtist),albumArtists=unique('albumArtist');
+ if(albums.length!==1||!album)return 'Bona_Music_Batch.zip';
+ const artistPart=albumArtists.length===1&&albumArtist?albumArtist+' - ':(artists.length===1&&artist?artist+' - ':'');
+ const yearPart=years.length===1&&year?' ('+year+')':'';
+ return (cleanName(artistPart+album+yearPart)||'Bona_Music_Batch')+'.zip';
+}
+function autoZipName(){if(!zipNameCustomized)$('zipName').value=zipSuggestion()}
+function finalZipName(){const base=cleanName($('zipName').value.replace(/\.zip$/i,''));return (base||'Bona_Music_Batch')+'.zip'}
+function parseFilePrefix(sourceBase){
+ // Disc-track notation must be checked BEFORE a single leading track number.
+ let m=/^\s*(\d{1,2})\s*[-_.]\s*(\d{1,3})(?=\s*(?:[-_. ]|$))\s*(?:[-_.]\s*)?/.exec(sourceBase);
+ if(m){return {disc:String(+m[1]),track:String(+m[2]),title:sourceBase.slice(m[0].length).trim()}}
+ m=/^\s*(\d{1,3})\s*(?:[-_.]\s*|\s+)/.exec(sourceBase);
+ return m?{disc:'',track:String(+m[1]),title:sourceBase.slice(m[0].length).trim()}:{disc:'',track:'',title:sourceBase};
+}
+// Separate only a *trailing* matching bracket pair, never brackets within the song name.
+// The conservative default recognises descriptive versions, not mere parenthetical song subtitles.
+const versionCue=/\b(?:mix|remix|edit|dub|version|instrumental|acappella|a\s+cappella|live|demo|acoustic|extended|radio|club|dance|remaster(?:ed)?|rework|re-edit|re-record(?:ed|ing)?|alternate|alternative|mono|stereo|session|take\s+\d+|karaoke|single|album\s+mix|original\s+mix|rough\s+mix|vocal|outtake|bonus\s+track|remake|reprise)\b/i;
+function trailingBracketVersion(raw,force=false){
+ const s=fmt(raw);const m=/^(.*?)\s*([([{])\s*([^()\[\]{}]+?)\s*([)\]}])\s*$/.exec(s);
+ if(!m||!m[1].trim()||({"(":")","[":"]","{":"}"})[m[2]]!==m[4])return null;
+ const version=fmt(m[3]);if(!version||(!force&&!versionCue.test(version)))return null;
+ return {title:tidySplitTitle(m[1]),version};
+}
+// V0.5.3: remove punctuation used only as a separator when a version has been identified.
+// Never clean an unsplit title; the original imported title remains available for undo.
+function tidySplitTitle(raw){const text=fmt(raw);return text.replace(/\s*[-–—:|]\s*$/u,'').trim()||text}
+// V0.5.2: lightweight proposals for unbracketed version suffixes; never auto-apply.
+const plainVersionEndings=new Set(['mix','remix','edit','dub','version','instrumental','demo','acoustic','acappella','rework','remaster','remastered','re-edit']);
+const plainVersionModifiers=new Set(['special','dance','club','radio','extended','original','single','album','vocal','instrumental','alternate','alternative','long','short','live','new','fresh','deep','classic','full','12','7','inch','12-inch','7-inch','remastered','stereo','mono','rough','special','acoustic','edit','re','re-edit']);
+let plainSuggestions=new Map();
+let numberTitleSuggestions=new Map();
+function plainVersionProposal(raw){
+ const title=fmt(raw);if(!title||/[)\]}]\s*$/.test(title))return null;
+ const parts=title.match(/\S+/g)||[];if(parts.length<3)return null;
+ const end=parts[parts.length-1].toLocaleLowerCase().replace(/[.,:;!?]+$/,'');if(!plainVersionEndings.has(end))return null;
+ let n=['mix','remix','edit','dub','version','re-edit'].includes(end)?2:1;
+ while(n<4&&parts.length-n>1&&plainVersionModifiers.has(parts[parts.length-n-1].toLocaleLowerCase().replace(/[.,:;!?]+$/,'')))n++;
+ if(parts.length-n<1)return null;
+ const result={title:tidySplitTitle(parts.slice(0,-n).join(' ')),version:parts.slice(-n).join(' ')};
+ if(!result.title||!result.version)return null;
+ return result;
+}
+function findPlainVersions(){
+ plainSuggestions.clear();let n=0;
+ for(const x of currentSelected()){
+  if(fmt(x.version))continue;
+  const p=plainVersionProposal(x.title);if(p){plainSuggestions.set(x.id,{...p,source:x.title});n++}
+ }
+ refreshAll();msg('loadStatus',n?`Found ${n} possible unbracketed mix/version suffix(es). Expand the suggestions on the matching track cards and accept only those that are correct.`:'No likely unbracketed version endings found. Nothing was changed.',n?'':'warn');
+}
+function acceptPlainVersion(x){
+ const p=plainSuggestions.get(x.id);if(!p||fmt(x.version)||x.title!==p.source){plainSuggestions.delete(x.id);refreshAll();return}
+ x.preExtractTitle=x.title;x.title=p.title;x.version=p.version;x.extracted=true;
+ plainSuggestions.delete(x.id);refreshAll();msg('loadStatus',`Accepted the suggested mix/version for ${x.original}. Review the title and version in the track workshop before exporting.`);
+}
+// V0.5.4: metadata-title numbering inspector. No automatic changes.
+// An obvious 02-07 or 07 - prefix can be proposed. Space-only prefixes
+// are allowed only when multiple sequentially numbered titles in the SAME
+// album share that pattern. Numeric song titles are never stripped blindly.
+function numberTitleCandidate(x){
+ const source=fmt(x.title), knownTrack=Number(x.track), knownDisc=Number(x.disc);
+ if(!source||/^\d{1,4}$/.test(source))return null; // 101 is a real title.
+ let m=/^\s*(\d{1,2})\s*[-_.]\s*(\d{1,3})\s*[-–—_.:]\s*(.+)$/u.exec(source);
+ if(m){
+  const disc=Number(m[1]),track=Number(m[2]),title=fmt(m[3]);
+  if(!title||(knownTrack>0&&track!==knownTrack)||(knownDisc>0&&disc!==knownDisc))return null;
+  return {source,title,prefix:m[1]+'-'+m[2],kind:'strong',why:knownTrack>0?'Disc and track prefix agrees with track details':'Disc-track prefix; track details are missing'};
+ }
+ m=/^\s*(\d{1,3})\s*[-–—_.:]\s*(.+)$/u.exec(source);
+ if(m){
+  const track=Number(m[1]),title=fmt(m[2]);
+  if(!title||(knownTrack>0&&track!==knownTrack))return null;
+  return {source,title,prefix:m[1],kind:'strong',why:knownTrack>0?'Prefix agrees with track number':'Possible prefix; no track number available to verify'};
+ }
+ // A plain space is ambiguous: "17 Days" might just be the song title.
+ m=/^\s*(\d{1,3})\s+([^\d].+)$/u.exec(source);
+ if(m&&knownTrack>0&&Number(m[1])===knownTrack){
+  return {source,title:fmt(m[2]),prefix:m[1],kind:'weak',why:'No separator. Review especially carefully; this number may belong to the title.'};
+ }
+ return null;
+}
+function titleNumberGroup(x){return [fmt(x.album).toLocaleLowerCase(),fmt(x.albumArtist||x.artist).toLocaleLowerCase(),fmt(x.disc)].join('|')}
+function inspectTitleNumbers(){
+ numberTitleSuggestions.clear();
+ const candidates=currentSelected().map(x=>({x,p:numberTitleCandidate(x)})).filter(z=>z.p);
+ const weakGroups=new Map();
+ for(const {x,p} of candidates){if(p.kind!=='weak')continue;const key=titleNumberGroup(x),set=weakGroups.get(key)||new Set();set.add(Number(x.track));weakGroups.set(key,set)}
+ let n=0,ambiguous=0;
+ for(const {x,p} of candidates){
+  if(p.kind==='weak'&&(weakGroups.get(titleNumberGroup(x))?.size||0)<2){ambiguous++;continue}
+  numberTitleSuggestions.set(x.id,p);n++;
+ }
+ refreshAll();
+ msg('loadStatus',n?`Found ${n} possible numbered title${n===1?'':'s'} for review. Accept or dismiss the suggestion on each track. Nothing has been changed.${ambiguous?' '+ambiguous+' isolated number-first title(s) were left alone because they may be genuine song names.':''}`:'No convincing track-number prefixes found in selected titles. Nothing changed; genuine number-first song titles are preserved.',n?'':'');
+}
+function acceptTitleNumber(x){
+ const p=numberTitleSuggestions.get(x.id);
+ if(!p||p.source!==x.title){numberTitleSuggestions.delete(x.id);refreshAll();return}
+ x.numberPrefixOriginal=x.title;
+ x.title=p.title;
+ numberTitleSuggestions.delete(x.id);
+ plainSuggestions.delete(x.id);
+ refreshAll();
+ msg('loadStatus',`Removed the suggested numbering from the title of ${x.original}. You can restore its original title in the track card. Audio files remain untouched until export.`);
+}
+function restoreTitleNumber(x){
+ if(!fmt(x.numberPrefixOriginal))return;
+ x.title=x.numberPrefixOriginal;x.numberPrefixOriginal='';numberTitleSuggestions.delete(x.id);plainSuggestions.delete(x.id);
+ refreshAll();msg('loadStatus',`Restored the original numbered title for ${x.original}.`);
+}
+function tryExtractVersion(x,force=false){
+ if(fmt(x.version))return false;
+ const part=trailingBracketVersion(x.title,force);if(!part)return false;
+ x.preExtractTitle=x.title;x.title=part.title;x.version=part.version;x.extracted=true;return true;
+}
+function restoreImportedTitle(x){
+ if(!x.extracted)return;
+ x.title=x.preExtractTitle;x.version='';x.extracted=false;plainSuggestions.delete(x.id);refreshAll();
+ msg('loadStatus','Restored the imported title for '+x.original+'. This changes the workspace only.');
+}
+function extractSelected(force){
+ const chosen=currentSelected().filter(x=>!fmt(x.version));
+ if(!chosen.length)return msg('loadStatus','No selected tracks have an empty Mix / Version field.','warn');
+ if(force&&!confirm('Extract ANY trailing bracketed text into Mix / Version on selected tracks? Some song subtitles are not mixes. Review results carefully.'))return;
+ let n=0;for(const x of chosen)if(tryExtractVersion(x,force))n++;
+ refreshAll();msg('loadStatus',n?`Separated ${n} bracketed version${n===1?'':'s'} from selected titles. Check each result before exporting.`:'No matching trailing bracket suffixes found. Existing versions were not changed.');
+}
+function expandAll(open){items.forEach(x=>x.expanded=open);refreshAll()}
+function syncWarnings(){const seen=new Map();for(const x of items){x.problem='';if(!x.selected)continue;const n=displayName(x).toLocaleLowerCase();if(seen.has(n)){x.problem='Duplicate output filename';seen.get(n).problem='Duplicate output filename'}else seen.set(n,x);if(!x.virtual && x.file.size>200*1024*1024)x.problem='Large file: ZIP may exhaust browser memory';}return items.filter(x=>x.selected&&x.problem).length}
+function refreshAll(){if(!zipExportBusy)resetZipProgress();syncWarnings();autoZipName();$('kFiles').textContent=items.length;$('kSelected').textContent=items.filter(x=>x.selected).length;$('kTagged').textContent=items.filter(x=>x.tags).length;$('kConflicts').textContent=items.filter(x=>x.selected&&x.problem).length;const has=items.some(x=>x.selected),collision=items.some(x=>x.selected&&x.problem.includes('Duplicate'));$('zipBtn').disabled=!has||collision||items.some(x=>x.selected&&x.virtual);$('folderExportBtn').disabled=!has||collision||items.some(x=>x.selected&&(x.virtual||!x.file))||!supportsFolderExport()||folderExportBusy;$('csvBtn').disabled=!has;$('expandAll').disabled=!items.length;$('collapseAll').disabled=!items.length;$('extractLikely').disabled=!has;$('extractAllSuffixes').disabled=!has;$('suggestPlainVersions').disabled=!has;$('inspectTitleNumbers').disabled=!has;$('matchArtistsBtn').disabled=!has;$('clearAlbumBtn').disabled=!has;$('applyNotesBtn').disabled=!has;$('clearNotesBtn').disabled=!has;$('commonTagsBtn').disabled=!has||!items.some(x=>x.selected&&x.file&&/\.mp3$/i.test(x.original));$('selectAll').checked=items.length>0&&items.every(x=>x.selected);$('selectAll').indeterminate=items.some(x=>x.selected)&&items.some(x=>!x.selected);$('scanDurationBtn').disabled=!has||scanBusy;$('autoPreviewBtn').disabled=!has||zipExportBusy||folderExportBusy;$('autoUndoBtn').disabled=!assemblyUndoStack.length||zipExportBusy||folderExportBusy;render();renderNumberDiagnostics();queueAutosave();}
+function render(){const root=$('records');root.replaceChildren();if(!items.length){const p=document.createElement('p');p.textContent='No tracks loaded yet. Choose a folder or try the sample album.';root.append(p);return}
+ for(const x of items){const card=document.createElement('article');card.className='record'+(x.selected?' selected':'')+(x.problem?' warn':'');card.dataset.itemId=String(x.id);const head=document.createElement('div');head.className='recordhead';const ck=document.createElement('input');ck.type='checkbox';ck.checked=x.selected;ck.setAttribute('aria-label','Include '+x.original);ck.addEventListener('change',()=>{x.selected=ck.checked;invalidateAutoPlan();refreshAll()});head.append(ck);
+ const info=document.createElement('div');info.className='recordname';const b=document.createElement('b');b.textContent=x.original;const small=document.createElement('small');small.textContent=x.needsReattach?'⚠ Original audio needs reselecting':(x.virtual?'Demonstration entry, no audio attached':(x.tags?'ID3 metadata read':'Using filename as starting point')+' · '+(x.ext||'').replace('.','').toUpperCase()+(x.duration?' · '+x.duration+(x.durationSource?' ('+x.durationSource+')':''):'') );info.append(b,small);head.append(info);const pill=document.createElement('span');pill.className='pill';pill.textContent=x.tags?'TAGS FOUND':'FILE NAME';head.append(pill);
+ // Arrow buttons are the dependable touch/keyboard fallback; ↕ also supports pointer dragging.
+ const order=document.createElement('div');order.className='order-controls';
+ const position=items.indexOf(x);
+ for(const [label,delta,tip] of [['↑',-1,'Move up'],['↓',1,'Move down']]){
+  const b=document.createElement('button');b.type='button';b.className='btn order-btn';b.textContent=label;b.title=tip;b.setAttribute('aria-label',tip+' '+x.original);
+  b.disabled=position+delta<0||position+delta>=items.length||zipExportBusy||folderExportBusy;
+  b.addEventListener('click',()=>moveTrack(x.id,delta));order.append(b);
+ }
+ const grip=document.createElement('button');grip.type='button';grip.className='btn drag-handle';grip.textContent='↕';grip.title='Hold and drag to rearrange';grip.setAttribute('aria-label','Drag to rearrange '+x.original);
+ grip.disabled=zipExportBusy||folderExportBusy;grip.addEventListener('pointerdown',e=>startTrackDrag(e,x.id,grip));
+ grip.addEventListener('pointermove',continueTrackDrag);grip.addEventListener('pointerup',finishTrackDrag);grip.addEventListener('pointercancel',cancelTrackDrag);
+ order.append(grip);head.append(order);card.append(head);
+ const preview=document.createElement('div');preview.className='preview';const label=document.createElement('small');label.textContent='New filename preview';const name=document.createElement('span');name.textContent=displayName(x);preview.append(label,name);if(x.problem){const w=document.createElement('small');w.className='warning';w.style.color='var(--yellow)';w.textContent='⚠ '+x.problem;preview.append(w)}card.append(preview);
+ if(x.extracted){const rail=document.createElement('div');rail.className='mini-rail';const note=document.createElement('span');note.className='import-note';note.textContent='✦ Version extracted from imported title';const undo=document.createElement('button');undo.type='button';undo.className='btn small';undo.textContent='Restore imported title';undo.addEventListener('click',()=>restoreImportedTitle(x));rail.append(note,undo);card.append(rail)}
+ const proposal=plainSuggestions.get(x.id);
+ if(proposal&&proposal.source===x.title&&!fmt(x.version)){
+  const suggestion=document.createElement('div');suggestion.className='mini-rail';suggestion.style.alignItems='center';
+  const note=document.createElement('span');note.className='import-note';note.textContent='Possible split: '+proposal.title+'  /  '+proposal.version;
+  const accept=document.createElement('button');accept.type='button';accept.className='btn small';accept.textContent='Use this split';accept.addEventListener('click',()=>acceptPlainVersion(x));
+  const dismiss=document.createElement('button');dismiss.type='button';dismiss.className='btn small';dismiss.textContent='Dismiss';dismiss.addEventListener('click',()=>{plainSuggestions.delete(x.id);refreshAll()});
+  suggestion.append(note,accept,dismiss);card.append(suggestion);
+ }
+ // The title-number suggestions are reviewed independently of remix detection.
+ const np=numberTitleSuggestions.get(x.id);
+ if(np&&np.source===x.title){
+  const rail=document.createElement('div');rail.className='mini-rail';rail.style.alignItems='center';
+  const note=document.createElement('span');note.className='import-note';note.textContent='Number in title? '+np.source+' → '+np.title+'. '+np.why;
+  const yes=document.createElement('button');yes.type='button';yes.className='btn small';yes.textContent='Remove suggested prefix';yes.addEventListener('click',()=>acceptTitleNumber(x));
+  const no=document.createElement('button');no.type='button';no.className='btn small';no.textContent='Keep original title';no.addEventListener('click',()=>{numberTitleSuggestions.delete(x.id);refreshAll()});
+  rail.append(note,yes,no);card.append(rail);
+ }
+ if(fmt(x.numberPrefixOriginal)){
+  const rail=document.createElement('div');rail.className='mini-rail';
+  const note=document.createElement('span');note.className='import-note';note.textContent='✓ Number prefix removed after your approval.';
+  const undo=document.createElement('button');undo.type='button';undo.className='btn small';undo.textContent='Restore numbered title';undo.addEventListener('click',()=>restoreTitleNumber(x));
+  rail.append(note,undo);card.append(rail);
+ }
+ const details=document.createElement('details');details.open=!!x.expanded;details.addEventListener('toggle',()=>{x.expanded=details.open;queueAutosave()});const summary=document.createElement('summary');summary.textContent='Edit track details';const fields=document.createElement('div');fields.className='recordfields';for(const [key,title] of [['artist','Track artist'],['albumArtist','Album artist'],['title','Title'],['album','Album'],['version','Mix / version'],['year','Year'],['track','Track number'],['disc','Disc number'],['duration','Duration'],['notes','Notes']]){const wrap=document.createElement('div');wrap.className='field';const lbl=document.createElement('label');lbl.textContent=title;const inp=document.createElement('input');inp.value=fmt(x[key]);inp.setAttribute('aria-label',title+' for '+x.original);if(key==='track'||key==='disc'){inp.type='text';inp.inputMode='numeric';inp.autocomplete='off';inp.addEventListener('blur',()=>{const val=optionalNumber(inp.value);inp.value=val;x[key]=val;refreshStatsWithoutRender()})}if(key==='year'){inp.inputMode='numeric';inp.maxLength=4}
+ if(key==='duration'){inp.inputMode='numeric';inp.placeholder='4:41 or 441';inp.autocomplete='off';inp.addEventListener('blur',()=>{const final=normaliseDuration(inp.value);if(final){inp.value=final;x.duration=final;x.durationSource='manual';refreshStatsWithoutRender()}else if(fmt(inp.value)){inp.setCustomValidity('Use 4:41 or 441. Seconds must be 00–59.');inp.reportValidity();}else{inp.setCustomValidity('')}})}
+ else if(['artist','albumArtist','title','album','version'].includes(key))inp.autocapitalize='words';
+ inp.addEventListener('input',e=>{
+  if(key==='duration'){const val=maskDurationTyping(inp.value);if(val!==inp.value){inp.value=val}inp.setCustomValidity('');x[key]=inp.value;x.durationSource='manual'}
+  else {if(['artist','albumArtist','title','album','version'].includes(key))capitaliseInput(e);if(key==='track'||key==='disc')resetAssemblyHistory();x[key]=inp.value;if(key==='title'){plainSuggestions.delete(x.id);numberTitleSuggestions.delete(x.id);x.numberPrefixOriginal=''}if(key==='notes')x.commentAction=fmt(inp.value)?'replace':'clear'}
+  refreshStatsWithoutRender();name.textContent=displayName(x)
+ });if(key==='albumArtist'){
+  const same=document.createElement('button');same.type='button';same.className='btn small';same.style.marginTop='6px';same.textContent='↪ Same as track artist';same.addEventListener('click',()=>{x.albumArtist=fmt(x.artist);inp.value=x.albumArtist;refreshStatsWithoutRender()});wrap.append(lbl,inp,same);
+ }else if(key==='track'||key==='disc'){
+  const adjust=document.createElement('div');adjust.className='inline';adjust.style.flexWrap='nowrap';
+  const minus=document.createElement('button');minus.type='button';minus.className='btn small';minus.textContent='−';minus.setAttribute('aria-label','Decrease '+title+' for '+x.original);minus.title='Decrease '+title;
+  const plus=document.createElement('button');plus.type='button';plus.className='btn small';plus.textContent='+';plus.setAttribute('aria-label','Increase '+title+' for '+x.original);plus.title='Increase '+title;
+  minus.addEventListener('click',()=>adjustTrackValue(x,key,-1));plus.addEventListener('click',()=>adjustTrackValue(x,key,1));
+  inp.style.minWidth='0';inp.style.flex='1';adjust.append(minus,inp,plus);wrap.append(lbl,adjust);if(x[key+'Rejected']){const note=document.createElement('small');note.className='import-note';note.textContent='Imported invalid value cleared: '+x[key+'Rejected'];wrap.append(note)}
+ }else wrap.append(lbl,inp);
+ fields.append(wrap)}details.append(summary,fields);card.append(details);root.append(card)}
+}
+function refreshStatsWithoutRender(){if(!zipExportBusy)resetZipProgress();syncWarnings();autoZipName();$('kConflicts').textContent=items.filter(x=>x.selected&&x.problem).length;const collisions=items.some(x=>x.selected&&x.problem.includes('Duplicate'));$('zipBtn').disabled=collisions||items.filter(x=>x.selected).some(x=>x.virtual);const cards=[...$('records').children];items.forEach((x,i)=>{if(cards[i]&&cards[i].querySelector('.preview')){const p=cards[i].querySelector('.preview span');if(p)p.textContent=displayName(x);const old=cards[i].querySelector('.warning');if(old)old.remove();if(x.problem){const z=document.createElement('small');z.className='warning';z.style.color='var(--yellow)';z.textContent='⚠ '+x.problem;cards[i].querySelector('.preview').append(z)}cards[i].classList.toggle('warn',!!x.problem)}});queueAutosave()}
+function fallbackTitle(filename){const s=filename.replace(/\.[^.]+$/,'');return parseFilePrefix(s).title.replace(/\s+/g,' ').trim()||s}
+function textDecoder(bytes,enc){try{if(!bytes.length)return'';if(enc===3)return new TextDecoder('utf-8').decode(bytes).replace(/\u0000/g,'').trim();if(enc===0)return new TextDecoder('iso-8859-1').decode(bytes).replace(/\u0000/g,'').trim();if(enc===1){if(bytes[0]===255&&bytes[1]===254)return new TextDecoder('utf-16le').decode(bytes.slice(2)).replace(/\u0000/g,'').trim();if(bytes[0]===254&&bytes[1]===255){const arr=bytes.slice(2);for(let i=0;i+1<arr.length;i+=2)[arr[i],arr[i+1]]=[arr[i+1],arr[i]];return new TextDecoder('utf-16le').decode(arr).replace(/\u0000/g,'').trim()}return new TextDecoder('utf-16le').decode(bytes).replace(/\u0000/g,'').trim()}if(enc===2){const a=bytes.slice();for(let i=0;i+1<a.length;i+=2)[a[i],a[i+1]]=[a[i+1],a[i]];return new TextDecoder('utf-16le').decode(a).replace(/\u0000/g,'').trim()}}catch(_){ }return''}
+function be32(b,pos){return ((b[pos]*16777216)+(b[pos+1]<<16)+(b[pos+2]<<8)+b[pos+3])>>>0}
+function syncsize(b,i){return ((b[i]&127)<<21)|((b[i+1]&127)<<14)|((b[i+2]&127)<<7)|(b[i+3]&127)}
+async function getId3(file){if(!/\.mp3$/i.test(file.name))return{};const h=new Uint8Array(await file.slice(0,10).arrayBuffer());const r={};if(h.length===10&&String.fromCharCode(...h.slice(0,3))==='ID3'&&h[3]>=2&&h[3]<=4){const ver=h[3],size=syncsize(h,6);if(size>0&&size<=2*1024*1024){const b=new Uint8Array(await file.slice(10,10+size).arrayBuffer());let p=0;if((h[5]&64)!==0){if(ver===3&&b.length>=4)p=Math.min(b.length,4+be32(b,0));if(ver===4&&b.length>=4)p=Math.min(b.length,syncsize(b,0))}
+ while(p+10<=b.length){const frameId=String.fromCharCode(...b.slice(p,p+4));if(!/^[A-Z0-9]{4}$/.test(frameId))break;const flen=ver===4?syncsize(b,p+4):be32(b,p+4);const flags=(b[p+8]<<8)+b[p+9];p+=10;if(flen<0||flen>b.length-p)break;const frame=b.slice(p,p+flen);p+=flen;if(!frame.length||flags&0x0080||flags&0x0008)continue;let val=textDecoder(frame.slice(1),frame[0]);if(frameId==='TPE1')r.artist=val;else if(frameId==='TPE2')r.albumArtist=val;else if(frameId==='TIT2')r.title=val;else if(frameId==='TALB')r.album=val;else if(frameId==='TDRC'||frameId==='TYER')r.year=val.slice(0,4);else if(frameId==='TRCK')r.track=val;else if(frameId==='TPOS')r.disc=val;else if(frameId==='TLEN'){const ms=Number(val);if(Number.isFinite(ms)&&ms>0){const seconds=Math.round(ms/1000);r.duration=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')}}else if(frameId==='TXXX'){const sep=textFrameSegments(frame);if(sep){if(sep[0]==='Bona Version')r.version=sep[1];if(sep[0]==='Bona Notes')r.notes=sep[1]}}else if(frameId==='COMM'){const comment=readComment(frame);if(comment&&(!r.notes||comment.description==='Bona Notes'))r.notes=comment.text}}
+ }}
+ if(!r.title||!r.artist||!r.album){const tail=new Uint8Array(await file.slice(Math.max(file.size-128,0),file.size).arrayBuffer());if(tail.length===128&&String.fromCharCode(...tail.slice(0,3))==='TAG'){const latin=b=>new TextDecoder('iso-8859-1').decode(b).replace(/\u0000/g,'').trim();r.title ||=latin(tail.slice(3,33));r.artist ||=latin(tail.slice(33,63));r.album ||=latin(tail.slice(63,93));r.year ||=latin(tail.slice(93,97));if(!r.track&&tail[125]===0&&tail[126]>0)r.track=String(tail[126])}}
+ // Bona stores the version separately as TXXX as well as optionally in TIT2.
+ // When loading one of our exported copies, avoid showing the mix twice.
+ if(r.version&&r.title&&r.title.toLocaleLowerCase().endsWith((' ('+r.version+')').toLocaleLowerCase()))r.title=r.title.slice(0,-r.version.length-3).trim();
+ return cleanImportedNumbers(r)}
+async function addFiles(list){
+ resetAssemblyHistory();plainSuggestions.clear();numberTitleSuggestions.clear();
+ const imagesAdded=receiveArtwork(list);
+ const filtered=[...list].filter(x=>supported.test(x.name)).sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true,sensitivity:'base'}));
+ if(!filtered.length){msg('loadStatus',imagesAdded?'Found '+imagesAdded+' cover image(s), but no supported audio files. Add MP3s to continue.':'No supported audio files selected. Try MP3, FLAC, M4A, WAV or OGG.','warn');return}
+ msg('loadStatus','Reading '+filtered.length+' audio file(s)…');let failures=0,extracted=0,reconnected=0,changed=0;
+ for(const file of filtered){
+  const original=file.webkitRelativePath||file.name;
+  const waiting=items.filter(x=>x.needsReattach&&x.file===null);
+  const exact=waiting.find(x=>x.original===original&&x.sourceSize===file.size&&(!x.sourceModified||x.sourceModified===file.lastModified))
+      ||(waiting.filter(x=>x.original.split('/').pop()===file.name&&x.sourceSize===file.size&&(!x.sourceModified||x.sourceModified===file.lastModified)).length===1
+        ?waiting.find(x=>x.original.split('/').pop()===file.name&&x.sourceSize===file.size&&(!x.sourceModified||x.sourceModified===file.lastModified)):null);
+  if(exact){exact.file=file;exact.virtual=false;exact.needsReattach=false;exact.sourceSize=file.size;exact.sourceModified=file.lastModified;reconnected++;continue}
+  if(waiting.some(x=>x.original===original||x.original.split('/').pop()===file.name))changed++;
+  const sameActive=items.find(x=>!x.needsReattach&&x.file&&x.original===original);
+  if(sameActive){if(sameActive.sourceSize===file.size&&sameActive.sourceModified===file.lastModified){sameActive.file=file;reconnected++;continue}else{changed++;continue}}
+  const ext=/\.[^.]+$/.exec(file.name)?.[0].toLowerCase()||'.mp3';const sourceBase=file.name.slice(0,-ext.length);
+  let tag={};try{tag=await getId3(file)}catch(e){failures++}
+  const x={id:++seq,file,original,sourceBase,ext,virtual:false,selected:true,tags:!!Object.keys(tag).length,artist:'',albumArtist:'',title:fallbackTitle(file.name),album:'',version:'',year:'',track:'',disc:'',duration:'',notes:'',commentAction:'keep',expanded:false,extracted:false,sourceSize:file.size,sourceModified:file.lastModified,...tag};
+  cleanImportedNumbers(x);
+  const parsed=parseFilePrefix(sourceBase);if(parsed.track&&!x.track&&!x.trackRejected)x.track=optionalNumber(parsed.track);if(parsed.disc&&!x.disc&&!x.discRejected)x.disc=optionalNumber(parsed.disc);if($('autoExtract').checked&&tryExtractVersion(x))extracted++;
+  items.push(x);
+ }
+ refreshAll();const remaining=items.filter(x=>x.needsReattach).length;
+ msg('loadStatus',`Loaded/reconnected ${filtered.length} audio file(s)${reconnected?' • '+reconnected+' recovery match(es)':''}${remaining?' • '+remaining+' backed-up track(s) still need their files':''}${changed?' • '+changed+' source file(s) look changed or already loaded; changed files were skipped, so save a project backup and reload them carefully':''}${failures?' • '+failures+' tag read issue(s)':''}${extracted?' • '+extracted+' versions separated':''}${imagesAdded?' • '+imagesAdded+' image(s) found':''}. Original audio is untouched.`,changed?'warn':'');
+}
+function samples(){resetAssemblyHistory();plainSuggestions.clear();numberTitleSuggestions.clear();items=[];seq=0;zipNameCustomized=false;revokeArtworks();renderCover();const album='Give My Regards to Broad Street';for(const [no,title,version] of [[1,'No More Lonely Nights','Ballad'],[2,'Good Day Sunshine',''],[3,'Yesterday',''],[4,'Here, There and Everywhere',''],[5,'No More Lonely Nights','Special Dance Remix']]){items.push({id:++seq,file:null,original:String(no).padStart(2,'0')+' - '+title+'.mp3',sourceBase:title,ext:'.mp3',virtual:true,selected:true,tags:false,artist:'Paul McCartney',albumArtist:'Paul McCartney',title,version,album,year:'1984',track:String(no),disc:'1',duration:'',notes:'',commentAction:'keep'})}refreshAll();msg('loadStatus','Five sample tracks loaded. Test the edits and filename rules; sample entries cannot generate audio ZIPs.');}
+function currentSelected(){return items.filter(x=>x.selected)}
+function applyBulk(){const selected=currentSelected();if(!selected.length)return msg('loadStatus','Select at least one track.','warn');const fields={artist:$('bulkArtist').value.trim(),albumArtist:$('bulkAlbumArtist').value.trim(),album:$('bulkAlbum').value.trim(),year:$('bulkYear').value.trim(),disc:$('bulkDisc').value.trim()};if(fields.year&&!/^\d{4}$/.test(fields.year))return msg('loadStatus','Year must contain four digits.','warn');if(fields.disc&&(!/^\d+$/.test(fields.disc)||Number(fields.disc)<1))return msg('loadStatus','Disc number must be a positive whole number.','warn');if(fields.disc)resetAssemblyHistory();for(const x of selected)for(const [key,val] of Object.entries(fields))if(val)x[key]=val;refreshAll();msg('loadStatus','Applied album-wide details to '+selected.length+' selected tracks.');}
+// V0.5.2 album helpers. All metadata changes are in-memory until export.
+function matchingArtists(){
+ const selected=currentSelected(),withArtist=selected.filter(x=>fmt(x.artist));if(!withArtist.length)return msg('loadStatus','No selected tracks contain a track artist to copy.','warn');
+ const changes=withArtist.filter(x=>fmt(x.albumArtist)!==fmt(x.artist));
+ const varies=new Set(withArtist.map(x=>fmt(x.artist).toLocaleLowerCase())).size>1;
+ if((varies||changes.some(x=>fmt(x.albumArtist)))&&!confirm('Copy each selected track artist to its album artist? '+(varies?'The track artists differ, so this may not suit a Various Artists compilation. ':'')+'Existing album artist values that differ will be replaced in the workspace. Original files are untouched.'))return;
+ for(const x of withArtist)x.albumArtist=x.artist;
+ if(fmt($('bulkArtist').value))$('bulkAlbumArtist').value=$('bulkArtist').value;
+ refreshAll();msg('loadStatus',`Matched album artist to track artist on ${withArtist.length} selected track(s). ${selected.length-withArtist.length} track(s) had no artist to copy.`);
+}
+function clearSelectedAlbumFields(){
+ const selected=currentSelected();if(!selected.length)return msg('loadStatus','Select at least one track first.','warn');
+ if(!confirm(`Clear Album, Album Artist and Year from ${selected.length} selected track(s)? Track artist, title, remix, disc/track numbers, duration and artwork are preserved. Original files are untouched.`))return;
+ for(const x of selected){x.album='';x.albumArtist='';x.year=''};
+ for(const id of ['bulkArtist','bulkAlbumArtist','bulkAlbum','bulkYear','bulkDisc'])$(id).value='';
+ refreshAll();msg('loadStatus',`Cleared album, album artist and year from ${selected.length} selected track(s), and reset the album-wide input boxes. Other track details are preserved.`);
+}
+// V0.6.1 LAB REV B: reset UI suggestions without clearing any loaded track metadata.
+// This intentionally differs from "Clear selected album tags", which changes selected
+// workspace records (with confirmation). Notes / Comments have their own controls.
+function clearBulkEntryBoxes(){
+ const fields=['bulkArtist','bulkAlbumArtist','bulkAlbum','bulkYear','bulkDisc'];
+ const populated=fields.some(id=>fmt($(id).value));
+ if(!populated){
+  msg('commonStatus','The five album-wide entry boxes are already empty. Find common MP3 tags can populate them now.');
+  $('commonStatus').classList.remove('hide');
+  return;
+ }
+ if(!confirm('Empty the five album-wide entry boxes? This only clears suggestions and text entered in those boxes. Loaded track tags, Notes / Comments and original audio are not changed.'))return;
+ for(const id of fields)$(id).value='';
+ msg('commonStatus','Album-wide entry boxes emptied. Track details and Notes / Comments are unchanged. You can now run Find common MP3 tags again.');
+ $('commonStatus').classList.remove('hide');
+ queueAutosave();
+}
+// V0.5.3: deliberate, album-wide comment actions. Original audio is not touched.
+function applyAlbumComments(){
+ const chosen=currentSelected(),note=$('bulkNotes').value.trim();
+ if(!chosen.length)return msg('loadStatus','Select at least one track before applying comments.','warn');
+ if(!note)return msg('loadStatus','Enter a comment first. To remove comments, use “Clear comments from selected tracks”.','warn');
+ if(chosen.some(x=>fmt(x.notes)&&fmt(x.notes)!==note)&&!confirm(`Replace existing comments in ${chosen.length} selected track(s)? Only exported MP3 copies receive updated embedded tags. Originals are untouched.`))return;
+ for(const x of chosen){x.notes=note;x.commentAction='replace'}
+ refreshAll();msg('loadStatus',`Applied the shared comment to ${chosen.length} selected track(s) in the workspace. With ID3 writing enabled, exported MP3 copies will have previous comment tags replaced. Other formats remain rename-only.`);
+}
+function clearAlbumComments(){
+ const chosen=currentSelected();if(!chosen.length)return msg('loadStatus','Select at least one track before clearing comments.','warn');
+ if(!confirm(`Remove ALL ID3 comment fields from the exported MP3 copies of ${chosen.length} selected track(s)? This includes comments not visible in the Notes field. Other tags, audio and original files are preserved.`))return;
+ for(const x of chosen){x.notes='';x.commentAction='clear'}
+ $('bulkNotes').value='';refreshAll();
+ msg('loadStatus',`Marked ${chosen.length} selected track(s) for comment removal. With ID3 writing enabled, all MP3 ID3v2 COMM and Bona Notes frames, plus legacy ID3v1 comment text, will be cleared in exported copies. Other audio formats stay rename-only.`);
+}
+async function findCommonTags(){
+ const chosen=currentSelected();if(!chosen.length)return;
+ const eligible=chosen.filter(x=>x.file&&/\.mp3$/i.test(x.original)),skipped=chosen.length-eligible.length;
+ if(!eligible.length)return msg('commonStatus','No attached MP3s are selected. Other formats do not yet have complete tag readers.','warn');
+ const button=$('commonTagsBtn');button.disabled=true;msg('commonStatus',`Inspecting existing tags in ${eligible.length} MP3 file(s)…`);$('commonStatus').classList.remove('hide');
+ const rows=[],fieldLabels={artist:'Track artist',albumArtist:'Album artist',album:'Album',year:'Year',disc:'Disc'};
+ let failures=0;
+ for(const x of eligible){try{rows.push(await getId3(x.file))}catch(_){failures++;rows.push({})}}
+ let populated=0;const report=[];
+ for(const [key,label] of Object.entries(fieldLabels)){
+  const counts=new Map();for(const r of rows){const value=fmt(r[key]);if(!value)continue;const id=value.toLocaleLowerCase();const entry=counts.get(id)||{value,count:0};entry.count++;counts.set(id,entry)}
+  const winners=[...counts.values()].sort((a,b)=>b.count-a.count),best=winners[0];
+  if(!best){report.push(label+': no tags');continue}
+  const isUnanimous=best.count===chosen.length && eligible.length===chosen.length;
+  if(isUnanimous){const el=$('bulk'+key.charAt(0).toUpperCase()+key.slice(1));if(el&&!fmt(el.value)){el.value=best.value;populated++}report.push(label+': '+best.value+' (all '+chosen.length+')')}
+  else{report.push(label+': '+best.value+' ('+best.count+'/'+chosen.length+')'+(winners.length>1?' • '+winners.length+' different values':''))}
+ }
+ msg('commonStatus',`MP3 tag check: ${chosen.length} selected, ${eligible.length} inspected${skipped?' ('+skipped+' non-MP3/unattached)':''}${failures?' • '+failures+' unreadable':''}. Filled ${populated} previously empty album-wide box(es) from unanimous matches only.
+`+report.join('\n')+'\nThese are suggestions in the album-wide boxes. Click “Apply to selected tracks” to update track data.');
+ $('commonStatus').classList.remove('hide');button.disabled=false;queueAutosave();
+}
+// Optional Title Case typing. Imported values and unrelated fields are never rewritten.
+function capitaliseInput(event){
+ const el=event.target;if(!$('smartCaps').checked||event.isComposing)return;
+ const before=el.value,after=before.replace(/(^|\s)([a-z])/g,(_,space,letter)=>space+letter.toUpperCase());
+ if(after===before)return;
+ const start=el.selectionStart,end=el.selectionEnd;el.value=after;
+ try{el.setSelectionRange(start,end)}catch(_){}
+}
+function maskDurationTyping(s){
+ const raw=String(s||'').trim();if(!raw)return '';
+ const digits=raw.replace(/\D/g,'').slice(0,7);
+ return digits.length>2?digits.slice(0,-2)+':'+digits.slice(-2):digits;
+}
+function normaliseDuration(s){
+ const t=String(s||'').trim();if(!t)return '';
+ let min,sec;
+ if(/^\d{1,5}:\d{1,2}$/.test(t)) [min,sec]=t.split(':').map(Number);
+ else if(/^\d{1,7}$/.test(t)){min=Number(t.slice(0,-2)||'0');sec=Number(t.slice(-2))}
+ else return null;
+ if(!Number.isFinite(min)||min>99999||sec>59)return null;
+ return String(min).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+}
+function wireBulkCaps(){
+ for(const id of ['bulkArtist','bulkAlbumArtist','bulkAlbum']){
+  const el=$(id);el.autocapitalize='words';el.addEventListener('input',capitaliseInput);
+ }
+}
+// === V0.6.1 LAB: Assemble album safely; all changes remain in memory until export. ===
+function assemblySignature(){return JSON.stringify(items.map(x=>[x.id,!!x.selected,fmt(x.track),fmt(x.disc)]))}
+function invalidateAutoPlan(){autoPlan=null;$('autoApplyBtn').disabled=true;$('autoPreview').replaceChildren();msg('autoStatus','Preview needs refreshing. Choose Preview AutoNumber before applying any numbers.');}
+function resetAssemblyHistory(){assemblyUndoStack.length=0;$('autoUndoBtn').disabled=true;invalidateAutoPlan()}
+function rememberAssembly(){assemblyUndoStack.push({ids:items.map(x=>x.id),values:items.map(x=>({id:x.id,track:x.track,disc:x.disc}))});if(assemblyUndoStack.length>20)assemblyUndoStack.shift()}
+function assemblyAllowed(){if(zipExportBusy||folderExportBusy){msg('autoStatus','Finish the current export before rearranging or renumbering.','warn');return false}return true}
+function moveTrack(id,delta){if(!assemblyAllowed())return;const from=items.findIndex(x=>x.id===id),to=from+delta;if(from<0||to<0||to>=items.length||from===to)return;
+ rememberAssembly();const [track]=items.splice(from,1);items.splice(to,0,track);invalidateAutoPlan();refreshAll();msg('autoStatus',`Moved ${short(track.original)} to position ${to+1}. Undo is available.`);}
+function adjustTrackValue(x,key,delta){if(!assemblyAllowed())return;const old=Number(x[key]);const base=Number.isSafeInteger(old)&&old>=1?old:(delta>0?0:1);const next=Math.max(1,Math.min(9999,base+delta));if(fmt(x[key])===String(next))return;
+ rememberAssembly();x[key]=String(next);invalidateAutoPlan();refreshAll();msg('autoStatus',`${key==='disc'?'Disc':'Track'} number changed to ${next} for ${short(x.original)}. Undo is available.`);}
+function startTrackDrag(e,id,handle){if(!assemblyAllowed()||e.button!==0||!e.isPrimary)return;dragState={id,pointerId:e.pointerId,x:e.clientX,y:e.clientY,target:null,moving:false,handle};handle.setPointerCapture(e.pointerId);}
+function continueTrackDrag(e){const d=dragState;if(!d||e.pointerId!==d.pointerId)return;
+ if(!d.moving&&Math.hypot(e.clientX-d.x,e.clientY-d.y)<9)return;
+ d.moving=true;const fromCard=$('records').querySelector(`[data-item-id="${d.id}"]`);if(fromCard)fromCard.classList.add('drag-source');
+ for(const el of $('records').querySelectorAll('.drop-target'))el.classList.remove('drop-target');
+ const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('.record');
+ d.target=target&&target.dataset.itemId!==String(d.id)?Number(target.dataset.itemId):null;
+ if(d.target!==null)target.classList.add('drop-target');
+}
+function finishTrackDrag(e){const d=dragState;if(!d||e.pointerId!==d.pointerId)return;const target=d.target;cancelTrackDrag(e);
+ if(d.moving&&target!==null){const from=items.findIndex(x=>x.id===d.id),to=items.findIndex(x=>x.id===target);if(from>=0&&to>=0&&from!==to)moveTrack(d.id,to-from)}
+}
+function cancelTrackDrag(e){if(!dragState)return;const d=dragState;dragState=null;
+ try{if(d.handle.hasPointerCapture(d.pointerId))d.handle.releasePointerCapture(d.pointerId)}catch(_){}
+ for(const el of $('records').querySelectorAll('.drop-target,.drag-source'))el.classList.remove('drop-target','drag-source');
+}
+function autoNumberSettings(){const positive=(id,max)=>{const s=$(id).value.trim();const n=Number(s);if(!/^\d+$/.test(s)||!Number.isSafeInteger(n)||n<1||n>max)throw Error(`${$(id).previousElementSibling?.textContent||id} must be a whole number from 1 to ${max}.`);return n};
+ return {start:positive('autoStart',9999),step:positive('autoStep',100),disc:positive('autoDisc',999),mode:$('autoMode').value};}
+function buildAutoPlan(){const chosen=currentSelected();if(!chosen.length)throw Error('Select at least one track first.');const opt=autoNumberSettings();let number=opt.start,lastDisc=null;const changes=[];
+ for(const x of chosen){const disc=opt.mode==='assign'?String(opt.disc):fmt(x.disc);if(opt.mode==='preserve'&&lastDisc!==null&&disc!==lastDisc)number=opt.start;
+ if(number>9999)throw Error('Numbering would exceed 9999. Use a smaller start or increment.');
+ changes.push({id:x.id,original:x.original,oldTrack:fmt(x.track),oldDisc:fmt(x.disc),newTrack:String(number),newDisc:disc});lastDisc=disc;number+=opt.step;}
+ return {signature:assemblySignature(),changes};}
+function previewAutoNumber(){if(!assemblyAllowed())return;try{const plan=buildAutoPlan();autoPlan=plan;
+ const wrap=document.createElement('div');wrap.className='auto-table-wrap';const table=document.createElement('table');table.className='auto-table';const thead=document.createElement('thead');const tr=document.createElement('tr');
+ for(const title of ['File (workshop order)','Before','Proposed']){const th=document.createElement('th');th.textContent=title;tr.append(th)}thead.append(tr);table.append(thead);
+ const tbody=document.createElement('tbody');const rows=plan.changes.length>65?[...plan.changes.slice(0,60),...plan.changes.slice(-5)]:plan.changes;
+ for(const change of rows){const row=document.createElement('tr');for(const value of [change.original,(change.oldDisc||'–')+' / '+(change.oldTrack||'–'),(change.newDisc||'–')+' / '+change.newTrack]){const cell=document.createElement('td');cell.textContent=value;row.append(cell)}tbody.append(row)}table.append(tbody);wrap.append(table);$('autoPreview').replaceChildren(wrap);
+ $('autoApplyBtn').disabled=false;msg('autoStatus',`Preview ready for ${plan.changes.length} selected track(s) in displayed order.${plan.changes.length>65?' Showing the first 60 and last 5; all tracks will be numbered.':''} Nothing has been changed. Review before applying.`);
+ }catch(e){invalidateAutoPlan();msg('autoStatus',e.message||String(e),'warn')}}
+function applyAutoNumber(){if(!assemblyAllowed())return;if(!autoPlan)return msg('autoStatus','Please preview the numbering first.','warn');
+ if(autoPlan.signature!==assemblySignature()){invalidateAutoPlan();return msg('autoStatus','Track selection, order or numbers changed after preview. Preview again before applying.','warn')}
+ rememberAssembly();const lookup=new Map(items.map(x=>[x.id,x]));for(const change of autoPlan.changes){const x=lookup.get(change.id);x.track=change.newTrack;x.disc=change.newDisc}
+ const count=autoPlan.changes.length;invalidateAutoPlan();refreshAll();msg('autoStatus',`Applied numbering to ${count} selected track(s). Originals are untouched. Use Undo last numbering / move if needed.`);}
+function undoAssembly(){if(!assemblyAllowed())return;const snapshot=assemblyUndoStack.pop();if(!snapshot)return;
+ const lookup=new Map(items.map(x=>[x.id,x]));if(snapshot.ids.length!==items.length||snapshot.ids.some(id=>!lookup.has(id))){resetAssemblyHistory();return msg('autoStatus','The track set has changed, so old undo history cannot be used safely.','warn')}
+ items=snapshot.ids.map(id=>lookup.get(id));for(const record of snapshot.values){const x=lookup.get(record.id);x.track=record.track;x.disc=record.disc}
+ invalidateAutoPlan();refreshAll();msg('autoStatus',`Previous arrangement/numbering action undone. ${assemblyUndoStack.length} more undo step(s) available. Original audio is unchanged.`);}
+function numbering(){if(!assemblyAllowed())return;const n=currentSelected().length;if(!n)return msg('loadStatus','Select tracks before numbering.','warn');rememberAssembly();let i=0;for(const x of items)if(x.selected)x.track=String(++i);invalidateAutoPlan();refreshAll();msg('loadStatus','Numbered '+n+' selected tracks in displayed order. Undo is available in AutoNumber studio.');}
+function readPresets(){try{const raw=JSON.parse(localStorage.getItem(presetKey)||'[]');presets=Array.isArray(raw)?raw.filter(x=>x&&typeof x.name==='string'&&typeof x.pattern==='string').slice(0,100):[]}catch(_){presets=[]}makePresetList()}
+function makePresetList(){const box=$('preset');box.replaceChildren();[...standards,...presets].forEach((p,i)=>{const op=document.createElement('option');op.value=String(i);op.textContent=(i<standards.length?'Default: ':'Saved: ')+p.name;box.append(op)});box.value='0';$('pattern').value=standards[0].pattern}
+function usePreset(){const idx=Number($('preset').value);const p=[...standards,...presets][idx];if(p)$('pattern').value=p.pattern;refreshAll()}
+function savePreset(){const name=$('presetName').value.trim(),pattern=$('pattern').value.trim();if(!name||!pattern)return msg('loadStatus','Enter a name and a filename pattern to save a preset.','warn');if(!pattern.includes('{title}')&&!pattern.includes('{artist}'))return msg('loadStatus','Include at least {title} or {artist} in the pattern.','warn');const already=presets.findIndex(p=>p.name.toLowerCase()===name.toLowerCase());if(already>=0)presets[already]={name,pattern};else presets.push({name,pattern});try{localStorage.setItem(presetKey,JSON.stringify(presets))}catch(_){return msg('loadStatus','This browser cannot persist presets. The pattern works for this session, but will not be remembered.','warn')}makePresetList();$('preset').value=String(standards.length+(already>=0?already:presets.length-1));$('pattern').value=pattern;msg('loadStatus','Saved custom protocol “'+name+'” in this browser.');refreshAll()}
+function deletePreset(){const n=Number($('preset').value)-standards.length;if(n<0)return msg('loadStatus','Default protocols cannot be deleted.','warn');const p=presets[n];if(!p||!confirm('Delete saved protocol “'+p.name+'”?'))return;presets.splice(n,1);try{localStorage.setItem(presetKey,JSON.stringify(presets))}catch(_){}makePresetList();refreshAll();msg('loadStatus','Removed the custom protocol.');}
+function download(blob,name){const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000)}
+function csvEscape(s){const str=String(s??'');return /[",\r\n]/.test(str)?'"'+str.replace(/"/g,'""')+'"':str}
+function exportCSV(){const chosen=currentSelected();if(!chosen.length)return;const lines=[cols.map(csvEscape).join(',')];for(const x of chosen){const tr=optionalNumber(x.track),di=optionalNumber(x.disc);const data=['','',x.artist,x.title,x.version,x.year,'Albums',x.ext.slice(1),x.album,x.duration,x.notes,displayName(x),'custom',tr?tr.padStart(2,'0'):'',di?di.padStart(2,'0'):'',$('pattern').value];lines.push(data.map(csvEscape).join(','))}download(new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),'Bona_Batch_Catalogue_Manifest.csv');msg('outStatus','Exported metadata CSV for '+chosen.length+' track(s). It is NOT automatically imported into Google Sheets. Entry IDs and dates intentionally remain blank.');}
+// === MP3 ID3 writer. Intentionally offline and non-destructive. ===
+// Only uncomplicated ID3v2.3 or v2.4 headers are rewritten. Existing frames not
+// targeted by Bona are kept byte-for-byte (including embedded cover images).
+function textFrameSegments(frame){
+ if(!frame||frame.length<2)return null;const enc=frame[0],bytes=frame.slice(1);let end=-1,step=(enc===1||enc===2)?2:1;
+ if(step===1)end=bytes.indexOf(0);else for(let i=0;i+1<bytes.length;i+=2)if(bytes[i]===0&&bytes[i+1]===0){end=i;break}
+ if(end<0)return null;return [textDecoder(bytes.slice(0,end),enc),textDecoder(bytes.slice(end+step),enc)];
+}
+function readComment(frame){if(frame.length<5)return null;const enc=frame[0],lang=String.fromCharCode(...frame.slice(1,4));const bytes=frame.slice(4),step=(enc===1||enc===2)?2:1;let end=-1;
+ if(step===1)end=bytes.indexOf(0);else for(let i=0;i+1<bytes.length;i+=2)if(bytes[i]===0&&bytes[i+1]===0){end=i;break}
+ if(end<0)return null;return {language:lang,description:textDecoder(bytes.slice(0,end),enc),text:textDecoder(bytes.slice(end+step),enc)};
+}
+function syncsafeBytes(n){if(n<0||n>=0x10000000)throw Error('ID3 tag is too large');return new Uint8Array([(n>>>21)&127,(n>>>14)&127,(n>>>7)&127,n&127])}
+function latinBytes(s){const t=String(s);return Uint8Array.from([...t].map(c=>c.charCodeAt(0)&255))}
+function id3TextBytes(s,version){if(version===4)return joinArrays([new Uint8Array([3]),encoder.encode(s)]);
+ const bom=new Uint8Array([255,254]),v=String(s),arr=new Uint8Array(v.length*2);for(let i=0;i<v.length;i++){const n=v.charCodeAt(i);arr[2*i]=n&255;arr[2*i+1]=n>>>8}return joinArrays([new Uint8Array([1]),bom,arr])}
+function id3TwoTexts(a,b,version){const enc=version===4?3:1;const zero=version===4?new Uint8Array([0]):new Uint8Array([0,0]);const plain=t=>{if(enc===3)return encoder.encode(t);const arr=new Uint8Array(t.length*2);for(let i=0;i<t.length;i++){arr[i*2]=t.charCodeAt(i)&255;arr[i*2+1]=t.charCodeAt(i)>>>8}return joinArrays([new Uint8Array([255,254]),arr])};return joinArrays([new Uint8Array([enc]),plain(a),zero,plain(b)])}
+function id3Frame(id,payload,version){const name=encoder.encode(id);if(name.length!==4)throw Error('Invalid ID3 frame');const size=version===4?syncsafeBytes(payload.length):u32BE(payload.length);return joinArrays([name,size,new Uint8Array([0,0]),payload])}
+function u32BE(n){return new Uint8Array([(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255])}
+function tagHeaderInfo(bytes){if(bytes.length<10||String.fromCharCode(...bytes.slice(0,3))!=='ID3')return {version:3,oldEnd:0,frames:[]};
+ const version=bytes[3],flags=bytes[5],size=syncsize(bytes,6),oldEnd=10+size;
+ if(version!==3&&version!==4)throw Error('Existing MP3 uses ID3v2.'+version+'. V0.4 cannot safely rewrite it; turn off ID3 writing to export renamed copies.');
+ if(flags!==0)throw Error('Existing MP3 contains advanced ID3 header flags; tag writing stopped to protect its metadata. Turn off ID3 writing to rename only.');
+ if(oldEnd>bytes.length||size>16*1024*1024)throw Error('Unusual or incomplete ID3 tag; export stopped safely.');
+ const frames=[];let p=10;
+ while(p+10<=oldEnd){if(bytes[p]===0&&bytes[p+1]===0)break;
+ const id=String.fromCharCode(...bytes.slice(p,p+4));if(!/^[A-Z0-9]{4}$/.test(id))throw Error('Unrecognised ID3 frame; export stopped to protect metadata.');
+ const len=version===4?syncsize(bytes,p+4):be32(bytes,p+4);const ff=(bytes[p+8]<<8)+bytes[p+9];if(!len||p+10+len>oldEnd)throw Error('Invalid ID3 frame size; export stopped.');
+ // Replacing encrypted, compressed or unsynchronised frames safely would need a full ID3 engine.
+ if(ff&(version===4?0x004F:0x00EF))throw Error('Advanced ID3 frame features detected. Turn off ID3 writing to rename only.');
+ frames.push({id,raw:bytes.slice(p,p+10+len),payload:bytes.slice(p+10,p+10+len)});p+=10+len;
+ }
+ return {version,oldEnd,frames};
+}
+function getUpdatedMP3Bytes(bytes,x,withMix,cover=null){
+ const tag=tagHeaderInfo(bytes);const version=tag.version;
+ const title=fmt(x.title),mix=fmt(x.version);
+ const commentAction=['keep','replace','clear','legacy'].includes(x.commentAction)?x.commentAction:'legacy';
+ const titleTag=withMix&&mix&&title&&!title.toLowerCase().endsWith(('('+mix+')').toLowerCase())?title+' ('+mix+')':title;
+ const mapped={TPE1:fmt(x.artist),TPE2:fmt(x.albumArtist),TIT2:titleTag,TALB:fmt(x.album),TRCK:optionalNumber(x.track),TPOS:optionalNumber(x.disc)};
+ mapped[version===4?'TDRC':'TYER']=fmt(x.year);
+ const seconds=/^(\d{1,5}):(\d{2})$/.exec(fmt(x.duration));
+ if(seconds&&Number(seconds[2])<60)mapped.TLEN=String((Number(seconds[1])*60+Number(seconds[2]))*1000);
+ const preserved=[];
+ for(const fr of tag.frames){
+  if(cover&&fr.id==='APIC'){const picType=apicPictureType(fr.payload);if(picType===null)throw Error('An existing cover image has an unusual APIC structure; cannot replace safely.');if(picType===3)continue;}
+  if(Object.prototype.hasOwnProperty.call(mapped,fr.id)||fr.id==='TYER'||fr.id==='TDRC'||fr.id==='TLEN')continue;
+  if(fr.id==='TXXX'){const pair=textFrameSegments(fr.payload);if(pair&&(pair[0]==='Bona Version'||(pair[0]==='Bona Notes'&&commentAction!=='keep')))continue}
+  if(fr.id==='COMM'&&(commentAction==='clear'||commentAction==='replace'))continue;
+  if(fr.id==='COMM'&&commentAction==='legacy'){const c=readComment(fr.payload);if(c&&c.description==='Bona Notes')continue}
+  preserved.push(fr.raw);
+ }
+ const additions=[];
+ for(const [id,text] of Object.entries(mapped))if(text)additions.push(id3Frame(id,id3TextBytes(text,version),version));
+ for(const [key,label] of [['track','Track'],['disc','Disc']]){const raw=fmt(x[key+'Rejected']),desc='Bona Original '+label+' Number';
+  if(raw&&!tag.frames.some(fr=>{if(fr.id!=='TXXX')return false;const pair=textFrameSegments(fr.payload);return pair&&pair[0]===desc&&pair[1]===raw;}))additions.push(id3Frame('TXXX',id3TwoTexts(desc,raw,version),version));
+ }
+ if(mix)additions.push(id3Frame('TXXX',id3TwoTexts('Bona Version',mix,version),version));
+ if(fmt(x.notes)&&['replace','legacy'].includes(commentAction))additions.push(id3Frame('COMM',joinArrays([new Uint8Array([version===4?3:1]),encoder.encode('eng'),id3TwoTexts('Bona Notes',fmt(x.notes),version).slice(1)]),version));
+ if(cover)additions.push(makeCoverFrame(cover,version));
+ const payload=joinArrays([...preserved,...additions]);
+ const newHeader=joinArrays([encoder.encode('ID3'),new Uint8Array([version,0,0]),syncsafeBytes(payload.length)]);
+ let audioTail=bytes.subarray(tag.oldEnd);
+ // An ID3v1 tag can carry a second, otherwise invisible comment at the very end.
+ // When the user explicitly replaces/clears comments, update that comment in the
+ // OUTPUT COPY while retaining its track number, genre and other legacy fields.
+ if((commentAction==='clear'||commentAction==='replace')&&audioTail.length>=128){
+  const start=audioTail.length-128;
+  if(String.fromCharCode(...audioTail.subarray(start,start+3))==='TAG'){
+   audioTail=new Uint8Array(audioTail);
+   const v11=audioTail[start+125]===0&&audioTail[start+126]>0;
+   const maximum=v11?28:30;
+   audioTail.fill(0,start+97,start+97+maximum);
+   if(commentAction==='replace'){
+    const note=fmt(x.notes);
+    for(let i=0;i<Math.min(note.length,maximum);i++){
+     const cp=note.charCodeAt(i);audioTail[start+97+i]=cp>255||cp===0?63:cp;
+    }
+   }
+  }
+ }
+ return joinArrays([newHeader,payload,audioTail]);
+}
+function validateBeforeZip(chosen){
+ const bad=chosen.find(x=>/\.mp3$/i.test(x.ext)&&fmt(x.duration)&&(!/^(\d{1,5}):(\d{2})$/.test(fmt(x.duration))||Number(fmt(x.duration).split(':')[1])>59));
+ if(bad)throw Error('Invalid duration for '+bad.original+'. Use minutes:seconds (for example 04:35), with seconds 00–59.');
+ // Imported zero values in TRCK/TPOS are placeholders, not an export error.
+ for(const x of chosen)for(const [label,value] of [['Disc number',x.disc],['Track number',x.track]]){
+  const n=optionalNumber(value);if(n&&(!/^\d{1,4}$/.test(n)||Number(n)<1))
+   throw Error(`${label} for ${short(x.original)} is “${fmt(value)}”. Use a positive whole number or leave it blank.`);
+ }
+}
+let crcTable=null;function crc32(bytes){if(!crcTable){crcTable=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;crcTable[n]=c>>>0}}let crc=-1;for(const b of bytes)crc=crcTable[(crc^b)&255]^(crc>>>8);return(crc^-1)>>>0}
+function u16(v){return new Uint8Array([v&255,(v>>>8)&255])}function u32(v){return new Uint8Array([v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255])}
+function joinArrays(chunks){const len=chunks.reduce((a,x)=>a+x.length,0);const out=new Uint8Array(len);let off=0;for(const x of chunks){out.set(x,off);off+=x.length}return out}
+function zipHeader(name,size,crc,centralOffset=0,isCentral=false){const n=encoder.encode(name);const now=new Date();const dosTime=(now.getHours()<<11)|(now.getMinutes()<<5)|(Math.floor(now.getSeconds()/2)),dosDate=((now.getFullYear()-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate();const parts=isCentral?[u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(dosTime),u16(dosDate),u32(crc),u32(size),u32(size),u16(n.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(centralOffset),n]:[u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(dosTime),u16(dosDate),u32(crc),u32(size),u32(size),u16(n.length),u16(0),n];return joinArrays(parts)}
+// === V0.5.1: larger collections, with one safe, user-initiated download per ZIP part. ===
+const zipButtonOriginal='↓ Download renamed copies (ZIP)';
+let zipProgress=null,zipExportBusy=false;
+let folderExportBusy=false,folderStopRequested=false;
+function resetZipProgress(){if(zipExportBusy)return;zipProgress=null;$('zipBtn').textContent=zipButtonOriginal;}
+function zipSelectionSignature(chosen){
+ const fields=['artist','albumArtist','title','version','album','year','track','disc','duration','notes','commentAction','selected'];
+ return JSON.stringify({tracks:chosen.map(x=>({name:x.original,size:x.file?.size,modified:x.file?.lastModified,values:fields.map(k=>x[k]),output:displayName(x)})),pattern:$('pattern').value,zipName:finalZipName(),limit:$('zipLimit').value,tags:$('writeTags').checked,mix:$('mixInTitle').checked,art:coverApply?{name:activeArtwork()?.file?.name,size:activeArtwork()?.file?.size,optimise:$('coverOptimise').checked}:null});
+}
+function zipPartGroups(chosen,cover){
+ const chosenMB=Number($('zipLimit').value);
+ const limit=chosenMB>0?chosenMB*1024*1024:(0xffffffff-8*1024*1024);
+ const groups=[];let part=[],running=22;
+ for(const x of chosen){
+  // A conservative upper bound allows for rewritten tags, embedded covers and ZIP headers.
+  const estimated=x.file.size+144*1024+(cover&&x.ext==='.mp3'?cover.bytes.length:0)+encoder.encode(displayName(x)).length*2;
+  if(estimated+22>=limit)throw Error('The track “'+short(x.original)+'” alone is too large for this ZIP setting. Choose a higher limit or use a smaller cover.');
+  if(part.length&&(running+estimated>limit||part.length>=65535)){
+   groups.push(part);part=[];running=22;
+  }
+  part.push(x);running+=estimated;
+ }
+ if(part.length)groups.push(part);
+ return {groups,limit,chosenMB};
+}
+function zipPartName(base,index,total){
+ if(total===1)return base;
+ const digits=Math.max(2,String(total).length);
+ const stem=base.replace(/\.zip$/i,'');
+ return stem+'_Part_'+String(index+1).padStart(digits,'0')+'_of_'+String(total).padStart(digits,'0')+'.zip';
+}
+// === V0.6 LAB: Direct folder export. Never writes to the selected directory itself.
+// The user grants read/write access by a direct click. Every batch gets its own NEW subfolder.
+// This is intentionally independent of the proven ZIP engine, which remains unchanged.
+function supportsFolderExport(){return !!(window.isSecureContext && typeof window.showDirectoryPicker==='function')}
+function folderHint(){
+ if(!window.isSecureContext)return 'Direct folder export needs HTTPS. Upload this LAB page to GitHub Pages to test it; local HTML can still use ZIP export.';
+ if(typeof window.showDirectoryPicker!=='function')return 'This browser cannot open a writable destination folder. Please use the proven ZIP exporter instead.';
+ return 'Ready to choose a destination. Bona creates a separate new folder and never changes source files.';
+}
+function folderExportLock(on){
+ // Keep the editing form still while files are written, without blocking Stop.
+ const els=[...document.querySelectorAll('main button,main input,main select,main textarea')].filter(el=>el.id!=='folderStopBtn');
+ if(on){for(const el of els){el.dataset.v06WasDisabled=el.disabled?'1':'0';el.disabled=true;}$('folderStopBtn').disabled=false;}
+ else {for(const el of els){if(el.dataset.v06WasDisabled!==undefined){el.disabled=el.dataset.v06WasDisabled==='1';delete el.dataset.v06WasDisabled;}}$('folderStopBtn').disabled=true;refreshAll();}
+}
+function suggestedFinishedFolder(){
+ const stem=cleanName(finalZipName().replace(/\.zip$/i,'')).slice(0,62)||'Music Batch';
+ const now=new Date();const stamp=now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'-'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0')+String(now.getSeconds()).padStart(2,'0');
+ return cleanName('Bona Finished - '+stem+' - '+stamp).slice(0,145);
+}
+async function makeFreshOutputFolder(parent){
+ // Create only a folder that did NOT already exist. Never reuse an earlier result folder.
+ const base=suggestedFinishedFolder();
+ for(let n=1;n<=100;n++){
+  const name=n===1?base:base+' ('+n+')';
+  try {await parent.getDirectoryHandle(name,{create:false});continue;}
+  catch(e){if(e?.name!=='NotFoundError')throw e;}
+  const child=await parent.getDirectoryHandle(name,{create:true});
+  // A safety check against accidentally picking up another process's preexisting folder.
+  for await(const _ of child.values())throw Error('The proposed output folder was not empty. No tracks have been written. Choose a different destination.');
+  return {child,name};
+ }
+ throw Error('Could not create a unique new output folder. Try a different destination.');
+}
+function folderErrorExplanation(e){
+ const name=e?.name||'',raw=e?.message||String(e);
+ if(name==='AbortError')return 'No folder selected, or the folder picker was cancelled. Nothing was written.';
+ if(/NotAllowedError|SecurityError|permission|denied|readwrite|read.only/i.test(name+' '+raw))return 'Folder writing was not permitted by Android or Chrome. Choose a normal writable folder and approve access, or use ZIP export.';
+ if(/not be read|not readable|not found|notreadableerror|modified since|acquired|no longer/i.test(raw))return 'One of the original music files could not be read. It may have been moved, modified or deleted. Reload the originals and try again.';
+ if(/QuotaExceededError|quota|space|storage/i.test(name+' '+raw))return 'Insufficient storage space to finish this folder export. Check available space and use ZIP export if needed.';
+ return raw;
+}
+async function exportDirectFolder(){
+ if(folderExportBusy||zipExportBusy)return;
+ const originalSelection=currentSelected();if(!originalSelection.length)return msg('folderStatus','Select some real music files first.','warn');
+ if(originalSelection.some(x=>x.virtual||!x.file))return msg('folderStatus','Sample or recovered entries have no connected audio. Re-select the original files before exporting.','warn');
+ if(originalSelection.some(x=>!x.file.size))return msg('folderStatus','An empty (zero-byte) music file is selected. Remove it or select a valid original before exporting. Nothing was written.','warn');
+ if(syncWarnings()&&originalSelection.some(x=>x.problem.includes('Duplicate')))return msg('folderStatus','Two selected tracks would have the same output filename. Resolve the duplicates before exporting.','warn');
+ try{validateBeforeZip(originalSelection)}catch(e){return msg('folderStatus',e.message,'warn')}
+ if(!supportsFolderExport())return msg('folderStatus',folderHint(),'warn');
+ const doTags=$('writeTags').checked,withMix=$('mixInTitle').checked,addCover=coverApply;
+ if(!doTags&&originalSelection.some(x=>x.ext==='.mp3'&&['replace','clear'].includes(x.commentAction)))return msg('folderStatus','Comment changes are selected but MP3 ID3 writing is off. Turn it on to export those changes.','warn');
+ if(addCover&&!doTags)return msg('folderStatus','Cover art needs ID3 writing. Tick “Save edited ID3 tags” or choose “Keep existing artwork”.','warn');
+ if(addCover&&!originalSelection.some(x=>x.ext==='.mp3'))return msg('folderStatus','A chosen cover can currently be embedded only in MP3 copies.','warn');
+ // Snapshot all metadata and intended names BEFORE opening the picker.
+ const targets=originalSelection.map(x=>({item:{...x},name:displayName(x)}));
+ let parent;
+ try{
+  // MUST be invoked directly from the user button gesture, before any await.
+  parent=await window.showDirectoryPicker({mode:'readwrite',id:'bona-finished-copies'});
+ }catch(e){return msg('folderStatus',folderErrorExplanation(e),'warn')}
+ folderExportBusy=true;folderStopRequested=false;folderExportLock(true);
+ let count=0,tagged=0,renameOnly=0,outputName='',currentName='',completed=false;
+ try{
+  msg('folderStatus','Destination selected. Preparing a fresh folder and checking the chosen artwork…');
+  const cover=addCover?await prepareCover():null;
+  const folder=await makeFreshOutputFolder(parent);const out=folder.child;outputName=folder.name;
+  for(let i=0;i<targets.length;i++){
+   if(folderStopRequested)break;
+   const {item,name}=targets[i];currentName=name;
+   msg('folderStatus',`Writing ${i+1}/${targets.length}: ${short(name)}\nDestination: ${outputName}\nCompleted: ${count}/${targets.length} • Original files untouched.`);
+   // Yield so progress can paint and the Stop control can be used.
+   await new Promise(r=>setTimeout(r,0));
+   let payload,expectedSize;
+   if(doTags&&item.ext==='.mp3'){
+    const raw=new Uint8Array(await item.file.arrayBuffer());
+    if(raw.length===0)throw Error('The original MP3 is empty: '+item.original);
+    try{payload=getUpdatedMP3Bytes(raw,item,withMix,cover)}catch(e){throw Error('Cannot safely tag '+item.original+': '+(e?.message||String(e)))}
+    expectedSize=payload.byteLength;tagged++;
+   }else{
+    payload=item.file;expectedSize=item.file.size;renameOnly++;
+   }
+   if(!expectedSize)throw Error('The source file appears empty: '+item.original);
+   // All names are written only in our *new empty child folder*.
+   let handle=null,stream=null;
+   try{
+    handle=await out.getFileHandle(name,{create:true});
+    stream=await handle.createWritable();
+    await stream.write(payload);
+    await stream.close();stream=null;
+    const written=await handle.getFile();
+    if(written.size!==expectedSize||written.size===0)throw Error('Written file size verification failed for '+name);
+   }catch(e){
+    try{if(stream)await stream.abort()}catch(_){}
+    // Only remove the newly-created incomplete output in the new Bona subfolder.
+    try{if(handle)await out.removeEntry(name)}catch(_){}
+    throw e;
+   }
+   count++;
+  }
+  completed=count===targets.length;
+  if(completed)msg('folderStatus',`FOLDER EXPORT FINISHED ✓\n${count} of ${targets.length} tracks saved in “${outputName}”.\nMP3 copies retagged: ${tagged}. Rename-only copies: ${renameOnly}.\nBona verified every written file's size. Please play a few tracks and check metadata before deleting any originals.`);
+  else msg('folderStatus',`Export stopped as requested after ${count} of ${targets.length} tracks.\nPartial copies are in “${outputName}”. Nothing was deleted. Inspect that folder before restarting. ZIP export is still available.`,'warn');
+ }catch(e){
+  const extra=outputName?`\n${count} completed track(s) remain in “${outputName}”. Inspect or remove those output COPIES before retrying.`:'\nNo tracks were written.';
+  msg('folderStatus','Folder export stopped safely: '+folderErrorExplanation(e)+extra+'\nThe original music files were not modified. You can still use ZIP export.','error');
+ }finally{folderExportBusy=false;folderStopRequested=false;folderExportLock(false)}
+}
+
+async function exportZIP(){
+ const chosen=currentSelected();if(!chosen.length||zipExportBusy)return;
+ if(chosen.some(x=>x.virtual))return msg('outStatus','Sample entries do not contain audio. Choose actual files to export renamed copies.','warn');
+ if(syncWarnings()&&chosen.some(x=>x.problem.includes('Duplicate')))return msg('outStatus','Resolve duplicate output filenames before exporting.','warn');
+ try{validateBeforeZip(chosen)}catch(e){return msg('outStatus',e.message,'warn')}
+ const signature=zipSelectionSignature(chosen),doTags=$('writeTags').checked;
+ if(!doTags&&chosen.some(x=>x.ext==='.mp3'&&['replace','clear'].includes(x.commentAction)))return msg('outStatus','Comment changes are queued, but “Save edited ID3 tags inside MP3 copies” is switched off. Turn it on to apply or clear embedded comments before exporting.','warn');
+ zipExportBusy=true;$('zipBtn').disabled=true;
+ let zipCreated=false;
+ try{
+  if(coverApply&&!doTags)throw Error('Cover art needs ID3 writing. Tick “Save edited ID3 tags” or choose “Keep existing artwork”.');
+  if(coverApply&&!chosen.some(x=>x.ext==='.mp3'))throw Error('No MP3 files are selected. Cover embedding is supported for MP3 copies only.');
+  msg('outStatus',coverApply?'Preparing chosen cover image and checking ZIP sizes…':'Checking ZIP sizes…');
+  const cover=coverApply?await prepareCover():null;
+  const {groups,limit,chosenMB}=zipPartGroups(chosen,cover);
+  const totalBytes=chosen.reduce((n,x)=>n+x.file.size,0);
+  const current=zipProgress?.signature===signature?zipProgress.next:0;
+  const partNo=current<groups.length?current:0;
+  if(chosenMB===0 && totalBytes>220*1024*1024 && partNo===0){
+   if(!confirm('No size cap can exhaust browser memory and crash the app, particularly on a phone. The safer choice is 220 MB with numbered ZIP parts. Export one large ZIP anyway?')){
+    msg('outStatus','Large unrestricted ZIP cancelled. Choose 220 MB to split it safely. Your originals remain untouched.','warn');return;
+   }
+  }
+  const batch=groups[partNo],partCount=groups.length;
+  const chunks=[],directory=[];let offset=0,tagged=0,renameOnly=0;
+  for(let i=0;i<batch.length;i++){
+   const x=batch[i],name=displayName(x),allIndex=chosen.indexOf(x)+1;
+   msg('outStatus',`ZIP part ${partNo+1}/${partCount} • preparing ${i+1}/${batch.length} (track ${allIndex}/${chosen.length}): ${short(name)}${doTags&&x.ext==='.mp3'?' • writing ID3 tags':''}`);
+   await new Promise(r=>setTimeout(r,0));
+   let bytes=new Uint8Array(await x.file.arrayBuffer());
+   if(doTags&&x.ext==='.mp3'){
+    try{bytes=getUpdatedMP3Bytes(bytes,x,$('mixInTitle').checked,cover);tagged++}
+    catch(err){throw Error('Track '+allIndex+' ('+x.original+'): '+(err.message||String(err)))}
+   }else renameOnly++;
+   const crc=crc32(bytes),h=zipHeader(name,bytes.length,crc);
+   if(offset+h.length+bytes.length+256>limit)throw Error('This part exceeded the chosen size after tagging. Use a larger ZIP limit or reduce artwork size; no files were downloaded for this part.');
+   directory.push(zipHeader(name,bytes.length,crc,offset,true));chunks.push(h,bytes);offset+=h.length+bytes.length;
+  }
+  const central=joinArrays(directory);
+  const footer=joinArrays([u32(0x06054b50),u16(0),u16(0),u16(batch.length),u16(batch.length),u32(central.length),u32(offset),u16(0)]);
+  const zip=new Blob([...chunks,central,footer],{type:'application/zip'});
+  if(zip.size>limit)throw Error('The finished ZIP exceeds the selected limit. Try a higher limit or smaller batch.');
+  const zipName=zipPartName(finalZipName(),partNo,partCount);
+  download(zip,zipName);
+  if(partNo+1<partCount){
+   zipProgress={signature,next:partNo+1,total:partCount};
+   $('zipBtn').textContent=`↓ Download ZIP part ${partNo+2} of ${partCount}`;
+   msg('outStatus',`Part ${partNo+1} of ${partCount} download requested: ${zipName}
+This part: ${batch.length} tracks, ${(zip.size/1024/1024).toFixed(1)} MB. MP3s retagged: ${tagged}. Rename-only: ${renameOnly}. ${cover?'Chosen cover embedded where applicable. ':''}
+Press “Download ZIP part ${partNo+2} of ${partCount}” to continue. Save ALL parts and check the contents before removing originals.`);
+  }else{
+   zipProgress=null;$('zipBtn').textContent=zipButtonOriginal;
+   msg('outStatus',`ZIP ${partNo+1} of ${partCount} download requested: ${zipName}
+This part: ${batch.length} tracks, ${(zip.size/1024/1024).toFixed(1)} MB. MP3s retagged: ${tagged}. Rename-only: ${renameOnly}. ${cover?'Chosen cover embedded where applicable. ':''}
+All ${chosen.length} selected tracks have been included across ${partCount} ZIP download request(s). Verify that every file downloaded and check tags and artwork before replacing originals.`);
+  }
+ }catch(e){
+  const raw=e?.message||String(e),fileProblem=/not be read|not readable|not found|permission|acquired|NotReadableError|modified since/i.test(raw);
+  msg('outStatus',fileProblem?'A music file is no longer accessible. It may have been edited or moved after you loaded it. Re-select the original album folder, check your edits and try again. Your originals are safe.':'ZIP export stopped safely: '+raw+'. No ZIP was downloaded for this part; original files were not modified.','error');
+ }finally{
+  refreshAll();zipExportBusy=false;
+  if(zipProgress)$('zipBtn').textContent=`↓ Download ZIP part ${zipProgress.next+1} of ${zipProgress.total||'?'}`;
+ }
+}
+// === V0.5: Project rescue. Only metadata is stored, NEVER the audio bytes. ===
+function recoverySnapshot(){
+ const fields=['artist','albumArtist','title','album','version','year','track','disc','duration','durationSource','notes','commentAction','selected','expanded','extracted','preExtractTitle','numberPrefixOriginal','trackRejected','discRejected'];
+ const tracks=items.map(x=>{
+  const t={original:x.original,sourceBase:x.sourceBase,ext:x.ext,sourceSize:x.file?.size??x.sourceSize??null,sourceModified:x.file?.lastModified??x.sourceModified??null,virtualDemo:!!x.virtual&&!x.needsReattach,tags:!!x.tags};
+  for(const k of fields)t[k]=x[k]??(k==='selected'?true:k==='expanded'?false:'');return t;
+ });
+ const formIds=['pattern','zipName','zipLimit','autoExtract','writeTags','mixInTitle','coverOptimise','bulkArtist','bulkAlbumArtist','bulkAlbum','bulkYear','bulkDisc','bulkNotes','smartCaps'];
+ const form={};for(const id of formIds){const e=$(id);form[id]=e.type==='checkbox'?e.checked:e.value}
+ return {app:'Bona Batch Music Editor',schema:1,createdAt:new Date().toISOString(),sourceVersion:'0.6.1-assembly-lab-rev-d',form,zipNameCustomized,tracks,cover:{fileName:activeArtwork()?.file?.name||'',apply:coverApply},note:'No audio files or artwork bytes included. Re-select the originals after restoration.'};
+}
+function queueAutosave(){
+ if(!allowAutosave)return;
+ if(recoveryTimer)clearTimeout(recoveryTimer);
+ recoveryTimer=setTimeout(writeBrowserAutosave,600);
+}
+function writeBrowserAutosave(){
+ if(!allowAutosave||!items.length)return;
+ if(recoveryTimer)clearTimeout(recoveryTimer);recoveryTimer=null;
+ try{localStorage.setItem(recoveryKey,JSON.stringify(recoverySnapshot()));autosaveAvailable=true;}
+ catch(_){autosaveAvailable=false;}
+}
+function checkAutosave(){
+ try{const data=JSON.parse(localStorage.getItem(recoveryKey)||'null');if(data?.app==='Bona Batch Music Editor'&&Array.isArray(data.tracks)&&data.tracks.length){
+  $('restoreAutosaveBtn').disabled=false;
+  msg('rescueStatus',`Browser saved ${data.tracks.length} track edit(s) from ${new Date(data.createdAt).toLocaleString()}. You can recover them, but you must re-select the audio files to export.`);
+  return;
+ }}catch(_){ }
+ msg('rescueStatus','No saved browser session found. Download a project backup before leaving a large batch; this is more dependable than browser autosave.');
+}
+function saveRecoveryProject(){
+ if(!items.length)return msg('rescueStatus','Nothing to save yet. Load an album or some tracks first.','warn');
+ const data=recoverySnapshot();const album=items.find(x=>x.selected)?.album||'Music';
+ const filename=(cleanName('Bona_Project_'+album)||'Bona_Project')+'.json';
+ download(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),filename);
+ writeBrowserAutosave();
+ msg('rescueStatus',`Project backup download requested: ${filename}. Keep this small JSON file safe. It holds your editing decisions, NOT your music files.`);
+}
+function validateRecovery(data){
+ if(!data||data.app!=='Bona Batch Music Editor'||data.schema!==1||!Array.isArray(data.tracks)||data.tracks.length>5000||!data.form||typeof data.form!=='object')throw Error('This is not a recognised Bona project backup.');
+ for(const t of data.tracks){if(!t||typeof t.original!=='string'||typeof t.ext!=='string'||t.original.length>1500)throw Error('The project file contains an invalid track entry.');}
+ return data;
+}
+function applyRecoveredProject(data,where){
+ validateRecovery(data);
+ if(items.length&&!confirm('Replace the current workspace with this saved project? You can save your current project first. Original music files are not affected.'))return;
+ const cols=['artist','albumArtist','title','album','version','year','track','disc','duration','durationSource','notes','commentAction','selected','expanded','extracted','preExtractTitle','numberPrefixOriginal','trackRejected','discRejected'];
+ resetAssemblyHistory();const next=[];seq=0;
+ for(const t of data.tracks){const x={id:++seq,file:null,virtual:true,needsReattach:!t.virtualDemo,original:t.original,sourceBase:t.sourceBase||t.original.replace(/\.[^.]+$/,''),ext:t.ext,sourceSize:t.sourceSize??null,sourceModified:t.sourceModified??null,tags:!!t.tags};
+  for(const k of cols)x[k]=t[k]??(k==='selected'?true:k==='expanded'?false:'');
+  cleanImportedNumbers(x);
+  x.commentAction=['keep','replace','clear','legacy'].includes(t.commentAction)?t.commentAction:'legacy';
+  x.selected=!!x.selected;x.expanded=!!x.expanded;x.extracted=!!x.extracted;
+  next.push(x);
+ }
+ items=next;plainSuggestions.clear();numberTitleSuggestions.clear();revokeArtworks();renderCover();
+ const form=data.form||{};for(const [id,v] of Object.entries(form)){const el=$(id);if(!el)continue;if(el.type==='checkbox')el.checked=!!v;else if(typeof v==='string'||typeof v==='number')el.value=String(v)}
+ zipNameCustomized=!!data.zipNameCustomized;
+ refreshAll();
+ // Files and cover pictures cannot safely be restored without user permission.
+ coverApply=false;renderCover();
+ const needed=items.filter(x=>x.needsReattach).length;
+ msg('rescueStatus',`Recovered ${items.length} track edit(s) from ${where}. ${needed} audio file(s) need reselecting. Use “Choose album folder” or “Choose audio files”, then verify matches. Any chosen cover must be reselected and approved.`,needed?'warn':'');
+ msg('loadStatus',`Project restored. ${needed} audio file(s) need reselecting before ZIP export. We will only reconnect files whose names, sizes and modification times match the backup.`,needed?'warn':'');
+ writeBrowserAutosave();
+}
+async function restoreProjectFile(file){
+ if(!file)return;
+ if(file.size>3*1024*1024)return msg('rescueStatus','Project file is unexpectedly large (over 3 MB). It was not opened.','warn');
+ try{const data=validateRecovery(JSON.parse(await file.text()));applyRecoveredProject(data,'the project file');}
+ catch(e){msg('rescueStatus','Could not restore project: '+(e.message||String(e)),'error')}
+}
+function restoreBrowserAutosave(){
+ try{const data=JSON.parse(localStorage.getItem(recoveryKey)||'null');applyRecoveredProject(data,'this browser autosave')}
+ catch(_){msg('rescueStatus','No readable browser autosave found. Try your downloaded Bona Project JSON file.','warn')}
+}
+function forgetAutosave(){
+ if(!confirm('Forget the browser autosave? This will NOT delete your music or downloaded project backup.'))return;
+ try{localStorage.removeItem(recoveryKey)}catch(_){ }
+ $('restoreAutosaveBtn').disabled=true;
+ msg('rescueStatus','Browser autosave forgotten. Downloaded project backup files are unaffected.');
+}
+// === V0.5: Accurate duration investigation, no audio playback. ===
+const validSeconds=s=>Number.isFinite(s)&&s>0.5&&s<48*3600;
+const durationText=secs=>{const s=Math.round(secs);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const readBE=(b,p,n)=>{let v=0;for(let i=0;i<n;i++)v=v*256+b[p+i];return v};
+async function readFlacDuration(file){
+ const b=new Uint8Array(await file.slice(0,48).arrayBuffer());if(b.length<42||String.fromCharCode(...b.slice(0,4))!=='fLaC')return null;
+ if((b[4]&0x7f)!==0||readBE(b,5,3)<34)return null;
+ const rate=(b[18]<<12)|(b[19]<<4)|(b[20]>>4);
+ const samples=(BigInt(b[21]&15)<<32n)|BigInt(readBE(b,22,4));
+ const seconds=rate?Number(samples)/rate:0;
+ return validSeconds(seconds)?{seconds,method:'FLAC sample count',confidence:'exact'}:null;
+}
+function mp3Header(b,p){
+ if(p+4>b.length||b[p]!==255||(b[p+1]&0xe0)!==0xe0)return null;
+ const ver=(b[p+1]>>3)&3,layer=(b[p+1]>>1)&3,rateIdx=(b[p+2]>>2)&3,bitIdx=(b[p+2]>>4)&15;
+ if(ver===1||layer!==1||rateIdx===3||bitIdx===0||bitIdx===15)return null;
+ const rates={3:[44100,48000,32000],2:[22050,24000,16000],0:[11025,12000,8000]};
+ const bits=(ver===3?[0,32,40,48,56,64,80,96,112,128,160,192,224,256,320]:[0,8,16,24,32,40,48,56,64,80,96,112,128,144,160]);
+ const hz=rates[ver][rateIdx],br=bits[bitIdx],spf=ver===3?1152:576;
+ const frameLen=Math.floor((ver===3?144:72)*br*1000/hz)+((b[p+2]>>1)&1);
+ return {hz,br,spf,frameLen,version:ver,mono:((b[p+3]>>6)&3)===3,crc:(b[p+1]&1)===0};
+}
+async function readMP3Duration(file){
+ const head=new Uint8Array(await file.slice(0,10).arrayBuffer());let offset=0;
+ if(head.length===10&&String.fromCharCode(...head.slice(0,3))==='ID3')offset=10+syncsize(head,6)+(head[5]&16?10:0);
+ if(offset>file.size-128)return null;
+ const b=new Uint8Array(await file.slice(offset,Math.min(file.size,offset+65536)).arrayBuffer());
+ for(let p=0;p<b.length-200&&p<2048;p++){
+  const h=mp3Header(b,p);if(!h||h.frameLen<25||h.frameLen>5000)continue;
+  if(!mp3Header(b,p+h.frameLen))continue;
+  const side=h.version===3?(h.mono?17:32):(h.mono?9:17);
+  const xing=p+4+(h.crc?2:0)+side;
+  if(xing+12<b.length){const name=String.fromCharCode(...b.slice(xing,xing+4));
+   if(name==='Xing'||name==='Info'){
+    const flags=readBE(b,xing+4,4),frames=(flags&1)?readBE(b,xing+8,4):0;
+    const seconds=frames*h.spf/h.hz;
+    if(validSeconds(seconds))return {seconds,method:name==='Xing'?'MP3 Xing VBR frame count':'MP3 Info frame count',confidence:'exact'};
+   }
+  }
+  // VBRI commonly appears 32 bytes after the MPEG header.
+  const vbri=p+4+32;
+  if(vbri+18<b.length&&String.fromCharCode(...b.slice(vbri,vbri+4))==='VBRI'){
+   const frames=readBE(b,vbri+14,4),seconds=frames*h.spf/h.hz;
+   if(validSeconds(seconds))return {seconds,method:'MP3 VBRI frame count',confidence:'exact'};
+  }
+  const h2=mp3Header(b,p+h.frameLen),h3=h2&&mp3Header(b,p+h.frameLen+h2.frameLen);
+  // CBR estimates are only allowed if several successive frames share a bitrate.
+  if(h2&&h3&&h2.br===h.br&&h3.br===h.br){
+   const footer=await file.slice(Math.max(0,file.size-128)).arrayBuffer();const tail=new Uint8Array(footer);
+   const id3v1=tail.length===128&&String.fromCharCode(...tail.slice(0,3))==='TAG'?128:0;
+   const seconds=(file.size-offset-p-id3v1)*8/(h.br*1000);
+   if(validSeconds(seconds))return {seconds,method:'MP3 CBR bitrate estimate',confidence:'estimated'};
+  }
+  return null;
+ }
+ return null;
+}
+async function readWavDuration(file){
+ const b=new Uint8Array(await file.slice(0,65536).arrayBuffer());
+ if(b.length<44||String.fromCharCode(...b.slice(0,4))!=='RIFF'||String.fromCharCode(...b.slice(8,12))!=='WAVE')return null;
+ let rate=0,bytes=0;const le16=p=>b[p]|(b[p+1]<<8),le32=p=>(b[p]+b[p+1]*256+b[p+2]*65536+b[p+3]*16777216)>>>0;
+ for(let p=12;p+8<b.length;){const id=String.fromCharCode(...b.slice(p,p+4)),len=le32(p+4);if(id==='fmt '&&len>=16)rate=le32(p+16);if(id==='data'){bytes=len;break}p+=8+len+(len%2)}
+ const seconds=rate&&bytes?bytes/rate:0;return validSeconds(seconds)?{seconds,method:'WAV data size',confidence:'exact'}:null;
+}
+async function readMP4Duration(file){
+ // Most M4A files put their movie header near the beginning, some at the end.
+ const size=Math.min(file.size,2*1024*1024);
+ const chunks=[new Uint8Array(await file.slice(0,size).arrayBuffer())];
+ if(file.size>size)chunks.push(new Uint8Array(await file.slice(file.size-size).arrayBuffer()));
+ for(const b of chunks)for(let i=4;i+40<b.length;i++){
+  if(b[i]!==109||b[i+1]!==100||b[i+2]!==104||b[i+3]!==100)continue; // mdhd
+  const version=b[i+4];let timescale=0,units=0;
+  if(version===0){timescale=readBE(b,i+16,4);units=readBE(b,i+20,4)}
+  if(version===1&&i+36<b.length){timescale=readBE(b,i+24,4);units=Number((BigInt(readBE(b,i+28,4))<<32n)|BigInt(readBE(b,i+32,4)))}
+  const seconds=timescale?units/timescale:0;
+  if(validSeconds(seconds))return{seconds,method:'M4A sample timeline',confidence:'exact'};
+ }
+ return null;
+}
+async function readAACDuration(file){
+ if(file.size>150*1024*1024)return null;
+ const srates=[96000,88200,64000,48000,44100,32000,24000,22050,16000,12000,11025,8000,7350];
+ let carry=new Uint8Array(0),samples=0,rate=0,frames=0,offset=0;
+ for(let start=0;start<file.size;start+=1024*1024){
+  const chunk=new Uint8Array(await file.slice(start,Math.min(file.size,start+1024*1024)).arrayBuffer());
+  const bytes=new Uint8Array(carry.length+chunk.length);bytes.set(carry);bytes.set(chunk,carry.length);
+  let p=0;
+  while(p+7<=bytes.length){
+   if(bytes[p]!==255||(bytes[p+1]&0xf6)!==0xf0){if(frames===0&&p<2048){p++;continue}return null}
+   const idx=(bytes[p+2]>>2)&15,hz=srates[idx];const len=((bytes[p+3]&3)<<11)|(bytes[p+4]<<3)|(bytes[p+5]>>5);
+   if(!hz||len<7||len>9000)return null;
+   if(p+len>bytes.length)break;
+   if(rate&&rate!==hz)return null;rate=hz;
+   samples+=1024*((bytes[p+6]&3)+1);frames++;p+=len;
+  }
+  carry=bytes.slice(p);offset=start+chunk.length;
+  if(carry.length>8192)return null;
+ }
+ if(carry.length&&carry.some(b=>b!==0))return null;
+ const seconds=rate?samples/rate:0;
+ return frames>0&&validSeconds(seconds)?{seconds,method:'AAC ADTS frame count',confidence:'exact'}:null;
+}
+async function browserMediaDuration(file){
+ const url=URL.createObjectURL(file);const audio=document.createElement('audio');audio.preload='metadata';
+ return await new Promise(resolve=>{
+  let done=false;const timer=setTimeout(()=>finish(null),5500);
+  function finish(value){if(done)return;done=true;clearTimeout(timer);audio.pause();audio.removeAttribute('src');audio.load();URL.revokeObjectURL(url);resolve(value)}
+  function inspect(){if(validSeconds(audio.duration))finish({seconds:audio.duration,method:'Browser audio metadata',confidence:'browser'});
+   else if(audio.duration===Infinity){try{audio.currentTime=1e10}catch(_){}}}
+  audio.addEventListener('loadedmetadata',inspect);audio.addEventListener('durationchange',inspect);audio.addEventListener('seeked',inspect);
+  audio.addEventListener('error',()=>finish(null));audio.src=url;audio.load();
+ });
+}
+async function investigateDuration(file){
+ const ext=/\.[^.]+$/.exec(file.name)?.[0].toLowerCase();let result=null;
+ try{
+  if(ext==='.flac')result=await readFlacDuration(file);
+  else if(ext==='.mp3')result=await readMP3Duration(file);
+  else if(ext==='.m4a')result=await readMP4Duration(file);
+  else if(ext==='.aac')result=await readAACDuration(file);
+  else if(ext==='.wav')result=await readWavDuration(file);
+ }catch(_){result=null}
+ if(!result){try{result=await browserMediaDuration(file)}catch(_){result=null}}
+ return result;
+}
+async function scanDurations(){
+ if(scanBusy)return;const selected=currentSelected();if(!selected.length)return;
+ const replace=$('rescanDurations').checked;
+ if(replace&&!confirm('Replace existing durations for selected tracks? This can overwrite manually entered times.'))return;
+ const targets=selected.filter(x=>replace||!fmt(x.duration));
+ if(!targets.length)return msg('durationStatus','Every selected track already has a duration. Nothing changed. Tick “Replace existing durations” if you want to check them again.');
+ scanBusy=true;$('scanDurationBtn').disabled=true;
+ let done=0,found=0,estimated=0,missing=0,skipped=selected.length-targets.length;const failures=[];
+ try{
+  for(const x of targets){
+   done++;msg('durationStatus',`Checking ${done}/${targets.length}: ${short(x.original)}…\nMeasured: ${found} • Still unknown: ${missing}`);
+   await new Promise(r=>setTimeout(r,0));
+   if(!x.file){missing++;failures.push(x.original+' (select original audio first)');continue}
+   let result=null;try{result=await investigateDuration(x.file)}catch(_){result=null}
+   if(result&&validSeconds(result.seconds)){
+    x.duration=durationText(result.seconds);x.durationSource=result.method+(result.confidence==='estimated'?' • estimated':'');found++;if(result.confidence==='estimated')estimated++;
+   }else{missing++;failures.push(x.original+' (could not measure)')}
+  }
+ }finally{scanBusy=false;refreshAll()}
+ msg('durationStatus',`Finished scanning ${targets.length} track(s): ${found} timed${estimated?' ('+estimated+' approximate)':''}, ${missing} not measured, ${skipped} existing time(s) preserved.${failures.length?'\nNeeds review: '+failures.slice(0,8).join('; ')+(failures.length>8?'…':''):''}\nOriginal files were not changed.`,missing?'warn':'');
+}
+
+$('coverPickBtn').addEventListener('click',()=>$('coverFileInput').click());$('coverFileInput').addEventListener('change',e=>{const n=receiveArtwork(e.target.files);if(n)msg('loadStatus','Added '+n+' cover image(s). Select one and press Use selected cover when ready.');e.target.value=''});$('coverSelect').addEventListener('change',chooseArtwork);$('coverUseBtn').addEventListener('click',applyArtwork);$('coverKeepBtn').addEventListener('click',keepArtwork);$('folderBtn').addEventListener('click',()=>$('folderInput').click());$('filesBtn').addEventListener('click',()=>$('filesInput').click());$('folderInput').addEventListener('change',async e=>{await addFiles(e.target.files);e.target.value=''});$('filesInput').addEventListener('change',async e=>{await addFiles(e.target.files);e.target.value=''});$('demoBtn').addEventListener('click',samples);$('emptyBtn').addEventListener('click',()=>{if(items.length&&!confirm('Clear the current unsaved workspace? Original files will not be affected.'))return;plainSuggestions.clear();numberTitleSuggestions.clear();resetAssemblyHistory();items=[];zipNameCustomized=false;revokeArtworks();renderCover();refreshAll();try{localStorage.removeItem(recoveryKey)}catch(_){}$('restoreAutosaveBtn').disabled=true;msg('loadStatus','Workspace cleared. Original files remain untouched.')});$('bulkBtn').addEventListener('click',applyBulk);$('matchArtistsBtn').addEventListener('click',matchingArtists);$('clearAlbumBtn').addEventListener('click',clearSelectedAlbumFields);$('commonTagsBtn').addEventListener('click',findCommonTags);$('clearBulkBoxesBtn').addEventListener('click',clearBulkEntryBoxes);$('applyNotesBtn').addEventListener('click',applyAlbumComments);$('clearNotesBtn').addEventListener('click',clearAlbumComments);$('suggestPlainVersions').addEventListener('click',findPlainVersions);$('inspectTitleNumbers').addEventListener('click',inspectTitleNumbers);$('expandAll').addEventListener('click',()=>expandAll(true));$('collapseAll').addEventListener('click',()=>expandAll(false));$('extractLikely').addEventListener('click',()=>extractSelected(false));$('extractAllSuffixes').addEventListener('click',()=>extractSelected(true));$('seqBtn').addEventListener('click',numbering);$('autoPreviewBtn').addEventListener('click',previewAutoNumber);$('autoApplyBtn').addEventListener('click',applyAutoNumber);$('autoUndoBtn').addEventListener('click',undoAssembly);for(const id of ['autoStart','autoStep','autoDisc','autoMode'])$(id).addEventListener('input',invalidateAutoPlan);$('selectAll').addEventListener('change',e=>{items.forEach(x=>x.selected=e.target.checked);invalidateAutoPlan();refreshAll()});$('preset').addEventListener('change',usePreset);$('pattern').addEventListener('input',refreshStatsWithoutRender);$('savePreset').addEventListener('click',savePreset);$('deletePreset').addEventListener('click',deletePreset);$('csvBtn').addEventListener('click',exportCSV);$('zipBtn').addEventListener('click',exportZIP);$('folderExportBtn').addEventListener('click',exportDirectFolder);$('folderStopBtn').addEventListener('click',()=>{if(folderExportBusy){folderStopRequested=true;msg('folderStatus','Stop requested. Bona will finish the current track and leave completed copies in the new output folder. Original files are safe.','warn')}});$('zipName').addEventListener('input',()=>{zipNameCustomized=true;resetZipProgress()});$('suggestZipBtn').addEventListener('click',()=>{zipNameCustomized=false;autoZipName()});$('scanDurationBtn').addEventListener('click',scanDurations);for(const id of ['writeTags','mixInTitle','zipLimit','coverOptimise'])$(id).addEventListener('change',resetZipProgress);
+$('numberDiagnosticsCSV').addEventListener('click',exportNumberDiagnostics);
+$('saveProjectBtn').addEventListener('click',saveRecoveryProject);
+$('openProjectBtn').addEventListener('click',()=>$('projectInput').click());
+$('projectInput').addEventListener('change',e=>{restoreProjectFile(e.target.files[0]);e.target.value=''});
+$('restoreAutosaveBtn').addEventListener('click',restoreBrowserAutosave);
+$('forgetAutosaveBtn').addEventListener('click',forgetAutosave);
+for(const id of ['pattern','zipName','autoExtract','writeTags','mixInTitle','zipLimit','coverOptimise','rescanDurations','bulkArtist','bulkAlbumArtist','bulkAlbum','bulkYear','bulkDisc','bulkNotes','smartCaps'])$(id).addEventListener('change',queueAutosave);
+for(const id of ['pattern','zipName','bulkArtist','bulkAlbumArtist','bulkAlbum','bulkYear','bulkDisc','bulkNotes'])$(id).addEventListener('input',queueAutosave);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')writeBrowserAutosave()});
+window.addEventListener('pagehide',writeBrowserAutosave);
+wireBulkCaps();readPresets();renderCover();refreshAll();allowAutosave=true;checkAutosave();msg('folderStatus',folderHint(),supportsFolderExport()?'':'warn');
+})();
+</script></body></html>
